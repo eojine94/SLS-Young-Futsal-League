@@ -1,0 +1,2054 @@
+{
+  "version": "2.7",
+  "children": [
+    {
+      "type": "frame",
+      "id": "3mPVS",
+      "x": 0,
+      "y": 3686,
+      "name": "KICKLOG Design System",
+      "width": 1400,
+      "fill": "$bg-primary",
+      "layout": "vertical",
+      "gap": 48,
+      "padding": 40,
+      "children": [
+        {
+          "type": "frame",
+          "id": "EIiuS",
+          "name": "Base Components",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "5UhSV",
+              "name": "sec1Title",
+              "fill": "$text-secondary",
+              "content": "BASE COMPONENTS",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "QrexX",
+              "name": "Buttons",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "AXXc3",
+                  "name": "Button/Primary",
+                  "reusable": true,
+                  "height": 44,
+                  "fill": "$accent-primary",
+                  "cornerRadius": "$radius-md",
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "6EEkr",
+                      "name": "Label",
+                      "fill": "$text-on-accent",
+                      "content": "Button",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "J3tHG",
+                  "name": "Button/Secondary",
+                  "reusable": true,
+                  "height": 44,
+                  "fill": "$bg-primary",
+                  "cornerRadius": "$radius-md",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "$border-default"
+                  },
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "JBb0g",
+                      "name": "Label",
+                      "fill": "$text-primary",
+                      "content": "Button",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "1tYqP",
+                  "name": "Button/Ghost",
+                  "reusable": true,
+                  "height": 44,
+                  "cornerRadius": "$radius-md",
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "4ybKa",
+                      "name": "Label",
+                      "fill": "$text-secondary",
+                      "content": "Button",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "7ophr",
+                  "name": "Button/Destructive",
+                  "reusable": true,
+                  "height": 44,
+                  "fill": "$status-error",
+                  "cornerRadius": "$radius-md",
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "9KUu0",
+                      "name": "Label",
+                      "fill": "$text-on-accent",
+                      "content": "Delete",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Gb4o7",
+              "name": "Inputs",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "UEbLh",
+                  "name": "InputGroup",
+                  "reusable": true,
+                  "width": 280,
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "72dJr",
+                      "name": "Label",
+                      "fill": "$text-primary",
+                      "content": "Label",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GdoJN",
+                      "name": "Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1.5,
+                        "fill": "$border-default"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MtGf3",
+                          "name": "Placeholder",
+                          "fill": "$text-tertiary",
+                          "content": "Placeholder",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "GmRXX",
+                  "name": "SelectGroup",
+                  "reusable": true,
+                  "width": 280,
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "0EjcF",
+                      "name": "Label",
+                      "fill": "$text-primary",
+                      "content": "Label",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "2R9pd",
+                      "name": "Select",
+                      "width": "fill_container",
+                      "height": 48,
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1.5,
+                        "fill": "$border-default"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "hcCOB",
+                          "name": "Value",
+                          "fill": "$text-tertiary",
+                          "content": "Select option",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "SPFyo",
+                          "name": "sgChevron",
+                          "width": 20,
+                          "height": 20,
+                          "iconFontName": "chevron-down",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-tertiary"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "suvnn",
+          "name": "Navigation",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "D4Fya",
+              "name": "navTitle",
+              "fill": "$text-secondary",
+              "content": "NAVIGATION",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "3B01w",
+              "name": "Nav Items",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "OI4Oi",
+                  "name": "NavItem/Active",
+                  "reusable": true,
+                  "width": "fill_container",
+                  "height": 52,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "Tv0yf",
+                      "name": "tab1Icon_13",
+                      "width": 22,
+                      "height": 22,
+                      "iconFontName": "house",
+                      "iconFontFamily": "lucide",
+                      "fill": "#2563EB"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nd1fR",
+                      "name": "Label",
+                      "fill": "$accent-primary",
+                      "content": "홈",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IvFPY",
+                  "name": "NavItem/Inactive",
+                  "reusable": true,
+                  "width": "fill_container",
+                  "height": 52,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "3EvnC",
+                      "name": "Icon",
+                      "width": 22,
+                      "height": 22,
+                      "iconFontName": "trophy",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "k55bY",
+                      "name": "Label",
+                      "fill": "$text-tertiary",
+                      "content": "순위",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YrKxe",
+              "name": "BottomNavBar",
+              "reusable": true,
+              "width": 480,
+              "height": 62,
+              "fill": "$bg-primary",
+              "cornerRadius": 100,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "#E4E4E7"
+              },
+              "padding": 4,
+              "justifyContent": "space_around",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "s99Q1",
+                  "name": "Nav Items",
+                  "slot": [
+                    "OI4Oi",
+                    "IvFPY"
+                  ],
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "justifyContent": "space_around",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "id": "mQbVh",
+                      "type": "ref",
+                      "ref": "OI4Oi",
+                      "name": "t1",
+                      "descendants": {
+                        "nd1fR": {
+                          "content": "홈"
+                        }
+                      }
+                    },
+                    {
+                      "id": "93yjp",
+                      "type": "ref",
+                      "ref": "IvFPY",
+                      "name": "t2",
+                      "descendants": {
+                        "3EvnC": {
+                          "iconFontName": "trophy"
+                        },
+                        "k55bY": {
+                          "content": "순위"
+                        }
+                      }
+                    },
+                    {
+                      "id": "TDbCC",
+                      "type": "ref",
+                      "ref": "IvFPY",
+                      "name": "t3",
+                      "descendants": {
+                        "3EvnC": {
+                          "iconFontName": "calendar"
+                        },
+                        "k55bY": {
+                          "content": "일정"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "aagZ9",
+          "name": "Controls",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "HpieJ",
+              "name": "ctrlTitle",
+              "fill": "$text-secondary",
+              "content": "CONTROLS",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "NjqMf",
+              "name": "Segment Items Row",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "GcPlM",
+                  "name": "SegmentItem/Active",
+                  "reusable": true,
+                  "width": "fill_container",
+                  "height": 36,
+                  "fill": "$accent-primary",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SqE83",
+                      "name": "Label",
+                      "fill": "$text-on-accent",
+                      "content": "팀별",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KG9Ua",
+                  "name": "SegmentItem/Inactive",
+                  "reusable": true,
+                  "width": "fill_container",
+                  "height": 36,
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zhIIn",
+                      "name": "Label",
+                      "fill": "$text-secondary",
+                      "content": "개인별",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "865Ie",
+              "name": "SegmentedControl",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 44,
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "$border-default"
+              },
+              "gap": 4,
+              "padding": 4,
+              "children": [
+                {
+                  "id": "vODIa",
+                  "type": "ref",
+                  "ref": "GcPlM",
+                  "name": "scA"
+                },
+                {
+                  "id": "gtkYI",
+                  "type": "ref",
+                  "ref": "KG9Ua",
+                  "name": "scI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "A5E04",
+          "name": "List Items",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "28jof",
+              "name": "listTitle",
+              "fill": "$text-secondary",
+              "content": "LIST ITEMS",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "NEi7d",
+              "name": "TeamRankItem",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 56,
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$border-default"
+              },
+              "gap": 14,
+              "padding": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Bx0Mz",
+                  "name": "Rank",
+                  "fill": "$accent-primary",
+                  "textGrowth": "fixed-width",
+                  "width": 24,
+                  "content": "1",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "gtmYM",
+                  "name": "Team Name",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "FC Thunder",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "TSWVg",
+                  "name": "Stat",
+                  "fill": "$accent-primary",
+                  "content": "8승",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KRd6Z",
+              "name": "PlayerRankItem",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 56,
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$border-default"
+              },
+              "gap": 14,
+              "padding": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yff2l",
+                  "name": "Rank",
+                  "fill": "$accent-primary",
+                  "textGrowth": "fixed-width",
+                  "width": 24,
+                  "content": "1",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "y4mYb",
+                  "name": "Name Column",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "hj4qX",
+                      "name": "Player Name",
+                      "fill": "$text-primary",
+                      "content": "홍길동",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "j4TjJ",
+                      "name": "Team Name",
+                      "fill": "$text-secondary",
+                      "content": "FC Thunder",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "6zTHx",
+                  "name": "Goals",
+                  "fill": "$accent-primary",
+                  "content": "12골",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RcJ4y",
+              "name": "MatchCard",
+              "reusable": true,
+              "width": "fill_container",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "$border-default"
+              },
+              "gap": 16,
+              "padding": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "XTfLi",
+                  "name": "Accent",
+                  "fill": "$accent-primary",
+                  "width": 3,
+                  "height": 40
+                },
+                {
+                  "type": "frame",
+                  "id": "uPzeb",
+                  "name": "Match Info",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EEvm0",
+                      "name": "Teams",
+                      "fill": "$text-primary",
+                      "content": "FC Thunder vs FC Storm",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gV057",
+                      "name": "Meta",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "8JFIK",
+                          "name": "Time",
+                          "fill": "$text-secondary",
+                          "content": "14:00",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "1kYcV",
+                          "name": "Location",
+                          "fill": "$text-tertiary",
+                          "content": "A구장",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "8aTRD",
+              "name": "TeamListItem",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 64,
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$border-default"
+              },
+              "gap": 14,
+              "padding": 16,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "vGCHA",
+                  "name": "Team Info",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "BnC0Z",
+                      "name": "Icon Box",
+                      "width": 40,
+                      "height": 40,
+                      "fill": "$accent-light",
+                      "cornerRadius": "$radius-md",
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "ZgZmX",
+                          "name": "tliIconI",
+                          "width": 20,
+                          "height": 20,
+                          "iconFontName": "users",
+                          "iconFontFamily": "lucide",
+                          "fill": "$accent-primary"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "MVmhe",
+                      "name": "Team Name",
+                      "fill": "$text-primary",
+                      "content": "FC Thunder",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Jp8pr",
+                  "name": "Right",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KVIkO",
+                      "name": "Count",
+                      "fill": "$text-secondary",
+                      "content": "8명",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "HQGAL",
+                      "name": "tliChev",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "chevron-right",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yiZHf",
+              "name": "PlayerListItem",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 56,
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$border-default"
+              },
+              "gap": 14,
+              "padding": 16,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "mzi6b",
+                  "name": "Player Info",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nVY7u",
+                      "name": "Name",
+                      "fill": "$text-primary",
+                      "content": "홍길동",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "5Vi0W",
+                      "name": "Role Badge",
+                      "fill": "$accent-light",
+                      "cornerRadius": "$radius-xl",
+                      "padding": [
+                        2,
+                        8
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ngQer",
+                          "name": "Role",
+                          "fill": "$accent-primary",
+                          "content": "팀장",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YCU41",
+                  "name": "Actions",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "Q6Krs",
+                      "name": "pliEdit",
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "pencil",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "kTCuA",
+                      "name": "pliDel",
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "trash-2",
+                      "iconFontFamily": "lucide",
+                      "fill": "$text-tertiary"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "UWOoV",
+          "name": "Table Components",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "bLEmd",
+              "name": "tableTitle",
+              "fill": "$text-secondary",
+              "content": "TABLE COMPONENTS",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "93ikl",
+              "name": "TableHeaderCell",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 44,
+              "fill": "$bg-muted",
+              "padding": [
+                0,
+                12
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "DwQvt",
+                  "name": "Label",
+                  "fill": "$text-secondary",
+                  "content": "팀명",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "1N51o",
+                  "name": "Sort",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "arrow-up-down",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-tertiary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "1mVcZ",
+              "name": "TableCell",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 44,
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$border-default"
+              },
+              "padding": [
+                0,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "USbjI",
+                  "name": "Text",
+                  "fill": "$text-primary",
+                  "content": "FC Thunder",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Knmka",
+              "name": "TableRow",
+              "reusable": true,
+              "slot": [
+                "thc",
+                "tc"
+              ],
+              "width": "fill_container",
+              "height": 44,
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$border-default"
+              },
+              "alignItems": "center"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "1V8E0",
+          "name": "Layout Components",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "s0MNJ",
+              "name": "layoutTitle",
+              "fill": "$text-secondary",
+              "content": "LAYOUT COMPONENTS",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "ZbBxZ",
+              "name": "PageHeader",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 56,
+              "padding": [
+                0,
+                24
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GJumk",
+                  "name": "Title",
+                  "fill": "$text-primary",
+                  "content": "KICKLOG",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.5
+                },
+                {
+                  "type": "frame",
+                  "id": "WdQUH",
+                  "name": "Action",
+                  "width": 44,
+                  "height": 44,
+                  "cornerRadius": 22,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "#E4E4E7"
+                  },
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "3KNT9",
+                      "x": 12,
+                      "y": 12,
+                      "name": "bellIcon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "bell",
+                      "iconFontFamily": "lucide",
+                      "fill": "#18181B"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "irykE",
+              "name": "SectionTitle",
+              "reusable": true,
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Q4Ss9",
+                  "name": "Title",
+                  "fill": "$text-primary",
+                  "content": "순위",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "sHNPl",
+                  "name": "Action",
+                  "fill": "$accent-primary",
+                  "content": "더보기",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "AYyQs",
+              "name": "DateHeader",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 36,
+              "padding": [
+                0,
+                4
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "OVWka",
+                  "name": "dhLine1",
+                  "fill": "$border-default",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "rMuGZ",
+                  "name": "Date",
+                  "fill": "$text-secondary",
+                  "content": "2025.02.15(토)",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "rectangle",
+                  "id": "3ZxOd",
+                  "name": "dhLine2",
+                  "fill": "$border-default",
+                  "width": "fill_container",
+                  "height": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "df3hQ",
+              "name": "ScoreInput",
+              "reusable": true,
+              "width": "fill_container",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "$border-default"
+              },
+              "gap": 24,
+              "padding": 20,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fvxJZ",
+                  "name": "Home",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "svpoS",
+                      "name": "Team Name",
+                      "fill": "$text-primary",
+                      "content": "FC Thunder",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4GAEp",
+                      "name": "Score Box",
+                      "width": 64,
+                      "height": 48,
+                      "cornerRadius": "$radius-md",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1.5,
+                        "fill": "$border-default"
+                      },
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "KEcbi",
+                          "name": "Score",
+                          "fill": "$text-primary",
+                          "content": "0",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "rbvB1",
+                  "name": "siVs",
+                  "fill": "$text-tertiary",
+                  "content": "vs",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "Hk54X",
+                  "name": "Away",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XU9km",
+                      "name": "Team Name",
+                      "fill": "$text-primary",
+                      "content": "FC Storm",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "QOc68",
+                      "name": "Score Box",
+                      "width": 64,
+                      "height": 48,
+                      "cornerRadius": "$radius-md",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1.5,
+                        "fill": "$border-default"
+                      },
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "6dBtq",
+                          "name": "Score",
+                          "fill": "$text-primary",
+                          "content": "0",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "O8WXj",
+              "name": "Divider",
+              "reusable": true,
+              "width": "fill_container",
+              "height": 1,
+              "fill": "$border-default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "hcIp7",
+      "x": 1500,
+      "y": 3686,
+      "name": "Mobile Preview (480px)",
+      "width": 480,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "gap": 40,
+      "padding": 24,
+      "children": [
+        {
+          "type": "frame",
+          "id": "gwXpq",
+          "name": "Buttons Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "JJkwu",
+              "name": "sec1Label",
+              "fill": "#71717A",
+              "content": "BUTTONS",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "xbmhu",
+              "name": "Button Row",
+              "width": "fill_container",
+              "gap": 12,
+              "children": [
+                {
+                  "id": "ttMRG",
+                  "type": "ref",
+                  "ref": "AXXc3",
+                  "name": "btn1"
+                },
+                {
+                  "id": "7prZj",
+                  "type": "ref",
+                  "ref": "J3tHG",
+                  "name": "btn2"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gL7kl",
+              "name": "Button Row 2",
+              "width": "fill_container",
+              "gap": 12,
+              "children": [
+                {
+                  "id": "ztCmg",
+                  "type": "ref",
+                  "ref": "1tYqP",
+                  "name": "btn3"
+                },
+                {
+                  "id": "JTQsH",
+                  "type": "ref",
+                  "ref": "7ophr",
+                  "name": "btn4"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "a8N7i",
+          "name": "Inputs Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "ELhbK",
+              "name": "sec2Label",
+              "fill": "#71717A",
+              "content": "INPUTS",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "id": "InXEu",
+              "type": "ref",
+              "ref": "UEbLh",
+              "width": "fill_container",
+              "name": "inp1"
+            },
+            {
+              "id": "ixYYo",
+              "type": "ref",
+              "ref": "GmRXX",
+              "width": "fill_container",
+              "name": "inp2"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "a7yZo",
+          "name": "Navigation Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "pX3nU",
+              "name": "sec3Label",
+              "fill": "#71717A",
+              "content": "NAVIGATION",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "id": "XhyAC",
+              "type": "ref",
+              "ref": "865Ie",
+              "width": "fill_container",
+              "name": "seg"
+            },
+            {
+              "id": "bUlkZ",
+              "type": "ref",
+              "ref": "YrKxe",
+              "width": "fill_container",
+              "name": "nav"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "1GosW",
+          "name": "List Items Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "kLcPg",
+              "name": "sec4Label",
+              "fill": "#71717A",
+              "content": "LIST ITEMS",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "Y9KTX",
+              "name": "Rank Card",
+              "clip": true,
+              "width": "fill_container",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "#E4E4E7"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "id": "BUHpj",
+                  "type": "ref",
+                  "ref": "NEi7d",
+                  "width": "fill_container",
+                  "name": "tr1"
+                },
+                {
+                  "id": "TCpPK",
+                  "type": "ref",
+                  "ref": "NEi7d",
+                  "width": "fill_container",
+                  "name": "tr2",
+                  "descendants": {
+                    "Bx0Mz": {
+                      "content": "2"
+                    },
+                    "gtmYM": {
+                      "content": "FC Storm"
+                    },
+                    "TSWVg": {
+                      "content": "6승"
+                    }
+                  }
+                },
+                {
+                  "id": "nSC6W",
+                  "type": "ref",
+                  "ref": "NEi7d",
+                  "width": "fill_container",
+                  "name": "tr3",
+                  "descendants": {
+                    "Bx0Mz": {
+                      "content": "3"
+                    },
+                    "gtmYM": {
+                      "content": "FC Blaze"
+                    },
+                    "TSWVg": {
+                      "content": "5승"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "vV018",
+              "type": "ref",
+              "ref": "RcJ4y",
+              "width": "fill_container",
+              "name": "mc"
+            },
+            {
+              "type": "frame",
+              "id": "b9gWn",
+              "name": "Team Card",
+              "clip": true,
+              "width": "fill_container",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "#E4E4E7"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "id": "s7KFx",
+                  "type": "ref",
+                  "ref": "8aTRD",
+                  "width": "fill_container",
+                  "name": "tl1"
+                },
+                {
+                  "id": "zUPhr",
+                  "type": "ref",
+                  "ref": "8aTRD",
+                  "width": "fill_container",
+                  "name": "tl2",
+                  "descendants": {
+                    "MVmhe": {
+                      "content": "FC Storm"
+                    },
+                    "KVIkO": {
+                      "content": "6명"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "5d8ab",
+              "name": "Player Card",
+              "clip": true,
+              "width": "fill_container",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "#E4E4E7"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "id": "gCf0Q",
+                  "type": "ref",
+                  "ref": "yiZHf",
+                  "width": "fill_container",
+                  "name": "pl1"
+                },
+                {
+                  "id": "GqQHt",
+                  "type": "ref",
+                  "ref": "yiZHf",
+                  "width": "fill_container",
+                  "name": "pl2",
+                  "descendants": {
+                    "nVY7u": {
+                      "content": "김철수"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "aWdpi",
+          "name": "Layout Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "RYWas",
+              "name": "sec5Label",
+              "fill": "#71717A",
+              "content": "LAYOUT",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "id": "pfPLh",
+              "type": "ref",
+              "ref": "ZbBxZ",
+              "width": "fill_container",
+              "name": "ph"
+            },
+            {
+              "id": "21vZg",
+              "type": "ref",
+              "ref": "irykE",
+              "width": "fill_container",
+              "name": "st"
+            },
+            {
+              "id": "S5GBq",
+              "type": "ref",
+              "ref": "AYyQs",
+              "width": "fill_container",
+              "name": "dh"
+            },
+            {
+              "id": "yXixj",
+              "type": "ref",
+              "ref": "O8WXj",
+              "width": "fill_container",
+              "name": "div"
+            },
+            {
+              "id": "gFPH2",
+              "type": "ref",
+              "ref": "df3hQ",
+              "width": "fill_container",
+              "name": "si"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "VJkyF",
+          "name": "Table Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "gHLKw",
+              "name": "sec6Label",
+              "fill": "#71717A",
+              "content": "TABLE",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "nMIek",
+              "name": "Table Preview",
+              "clip": true,
+              "width": "fill_container",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "#E4E4E7"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "N9Edh",
+                  "name": "Header Row",
+                  "width": "fill_container",
+                  "children": [
+                    {
+                      "id": "4yIdw",
+                      "type": "ref",
+                      "ref": "93ikl",
+                      "width": "fill_container",
+                      "name": "th1"
+                    },
+                    {
+                      "id": "XUEB1",
+                      "type": "ref",
+                      "ref": "93ikl",
+                      "width": "fill_container",
+                      "name": "th2",
+                      "descendants": {
+                        "DwQvt": {
+                          "content": "승"
+                        }
+                      }
+                    },
+                    {
+                      "id": "K3nW5",
+                      "type": "ref",
+                      "ref": "93ikl",
+                      "width": "fill_container",
+                      "name": "th3",
+                      "descendants": {
+                        "DwQvt": {
+                          "content": "무"
+                        }
+                      }
+                    },
+                    {
+                      "id": "MSPUa",
+                      "type": "ref",
+                      "ref": "93ikl",
+                      "width": "fill_container",
+                      "name": "th4",
+                      "descendants": {
+                        "DwQvt": {
+                          "content": "패"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HxTqt",
+                  "name": "Data Row 1",
+                  "width": "fill_container",
+                  "children": [
+                    {
+                      "id": "XrCd3",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": "fill_container",
+                      "name": "td1a"
+                    },
+                    {
+                      "id": "O1Qoe",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": "fill_container",
+                      "name": "td1b",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "8"
+                        }
+                      }
+                    },
+                    {
+                      "id": "rDRaA",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": "fill_container",
+                      "name": "td1c",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "2"
+                        }
+                      }
+                    },
+                    {
+                      "id": "B4lgL",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": "fill_container",
+                      "name": "td1d",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "1"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "1WLrt",
+                  "name": "Data Row 2",
+                  "width": "fill_container",
+                  "children": [
+                    {
+                      "id": "RXCyz",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": "fill_container",
+                      "name": "td2a",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "FC Storm"
+                        }
+                      }
+                    },
+                    {
+                      "id": "K8Pgh",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": "fill_container",
+                      "name": "td2b",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "6"
+                        }
+                      }
+                    },
+                    {
+                      "id": "1gCPV",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": "fill_container",
+                      "name": "td2c",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "3"
+                        }
+                      }
+                    },
+                    {
+                      "id": "i4kqn",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": "fill_container",
+                      "name": "td2d",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "2"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "accent-light": {
+      "type": "color",
+      "value": "#EFF6FF"
+    },
+    "accent-primary": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "bg-highlight": {
+      "type": "color",
+      "value": "#EFF6FF"
+    },
+    "bg-muted": {
+      "type": "color",
+      "value": "#F4F4F5"
+    },
+    "bg-primary": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "border-default": {
+      "type": "color",
+      "value": "#E4E4E7"
+    },
+    "font-primary": {
+      "type": "string",
+      "value": "Inter"
+    },
+    "radius-full": {
+      "type": "number",
+      "value": 100
+    },
+    "radius-lg": {
+      "type": "number",
+      "value": 12
+    },
+    "radius-md": {
+      "type": "number",
+      "value": 8
+    },
+    "radius-sm": {
+      "type": "number",
+      "value": 6
+    },
+    "radius-xl": {
+      "type": "number",
+      "value": 16
+    },
+    "screen-width": {
+      "type": "number",
+      "value": 402
+    },
+    "spacing-lg": {
+      "type": "number",
+      "value": 16
+    },
+    "spacing-md": {
+      "type": "number",
+      "value": 12
+    },
+    "spacing-section": {
+      "type": "number",
+      "value": 32
+    },
+    "spacing-sm": {
+      "type": "number",
+      "value": 8
+    },
+    "spacing-xl": {
+      "type": "number",
+      "value": 24
+    },
+    "spacing-xs": {
+      "type": "number",
+      "value": 4
+    },
+    "status-error": {
+      "type": "color",
+      "value": "#EF4444"
+    },
+    "status-success": {
+      "type": "color",
+      "value": "#22C55E"
+    },
+    "status-warning": {
+      "type": "color",
+      "value": "#F59E0B"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#D4D4D8"
+    },
+    "text-on-accent": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#18181B"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#71717A"
+    },
+    "text-tertiary": {
+      "type": "color",
+      "value": "#A1A1AA"
+    },
+    "$screen-width": {
+      "type": "number",
+      "value": 480
+    }
+  }
+}
