@@ -1,11 +1,11 @@
-# KICKLOG
+# SLS FUTSAL LEAGUE
 
 > 풋살 리그 정보 확인 서비스 (순위, 일정, 결과)
 
 ## 기술 스택
 
 - **Frontend**: React 19 + TypeScript + Vite
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS + shadcn/ui
 - **상태관리**: TanStack Query (React Query)
 - **Backend/DB/Auth**: Supabase
 - **Hosting**: Vercel
@@ -68,6 +68,8 @@ npm run preview  # 빌드 결과 미리보기
 - 상수: UPPER_SNAKE_CASE
 - 파일명: 컴포넌트는 PascalCase, 나머지는 camelCase
 - 스타일: Tailwind CSS 클래스 사용, 인라인 스타일 지양
+- Import: 절대경로 alias 사용 (`@features`, `@shared`, `@services`, `@mocks`)
+  - 예: `import { Button } from '@shared/components/Button'`
 
 ## 레이아웃
 
@@ -82,6 +84,12 @@ npm run preview  # 빌드 결과 미리보기
 | ----------- | -------------------- |
 | 일반 사용자 | Home, Rank, Schedule |
 | 관리자      | 위 + Team, Result    |
+
+## 디자인
+
+- **디자인 파일**: `pencil.pen` (Pencil MCP 도구로 관리)
+- **구현**: Tailwind CSS + shadcn/ui로 디자인을 코드로 구현
+- 디자인 확인/수정 시 Pencil MCP 도구 사용 (절대 경로: `/Users/joshua.oh/development/soccer-record/pencil.pen`)
 
 ## 상세 기획
 
