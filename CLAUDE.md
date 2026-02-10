@@ -71,6 +71,14 @@ npm run preview  # 빌드 결과 미리보기
 - Import: 절대경로 alias 사용 (`@features`, `@shared`, `@services`, `@mocks`)
   - 예: `import { Button } from '@shared/components/Button'`
 
+### 코딩 스타일 선호도
+
+- **관심사 분리(Separation of Concerns)**: 각 모듈, 컴포넌트, 함수는 명확한 단일 책임을 가져야 함
+  - UI 로직과 비즈니스 로직 분리
+  - 데이터 fetching은 hooks에서 처리 (예: `useTeamList`, `useMatchSchedule`)
+  - UI 컴포넌트는 presentation에 집중
+  - 유틸 함수는 순수 함수로 작성하여 테스트 용이성 확보
+
 ## 레이아웃
 
 - 모바일 앱 스타일 고정 폭 (max-width: `screenMaxWidth`)
