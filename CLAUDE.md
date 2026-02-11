@@ -1,6 +1,6 @@
 # SLS FUTSAL LEAGUE
 
-> 풋살 리그 정보 확인 서비스 (순위, 일정, 결과)
+> 풋살 리그 정보 확인 서비스 (순위, 경기)
 
 ## 기술 스택
 
@@ -25,17 +25,12 @@ src/
 │   │   ├── hooks/
 │   │   ├── types/
 │   │   └── index.tsx
-│   ├── schedule/
+│   ├── match/
 │   │   ├── components/
 │   │   ├── hooks/
 │   │   ├── types/
 │   │   └── index.tsx
-│   ├── team/              # 관리자 전용
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── types/
-│   │   └── index.tsx
-│   └── result/            # 관리자 전용
+│   └── team/              # 관리자 전용
 │       ├── components/
 │       ├── hooks/
 │       ├── types/
@@ -81,23 +76,23 @@ npm run preview  # 빌드 결과 미리보기
 
 ## 레이아웃
 
-- 모바일 앱 스타일 고정 폭 (max-width: `screenMaxWidth`)
+- 모바일 앱 스타일 고정 폭 (max-width: `screenMaxWidth` = 480px)
 - PC: 화면 중앙 배치 + 그림자
 - 모바일: 전체 화면
 - 하단 고정 네비게이션 바
 
 ## 사용자 역할
 
-| 역할        | 접근 가능 화면       |
-| ----------- | -------------------- |
-| 일반 사용자 | Home, Rank, Schedule |
-| 관리자      | 위 + Team, Result    |
+| 역할        | 접근 가능 화면                |
+| ----------- | ----------------------------- |
+| 일반 사용자 | Home, Rank, Match             |
+| 관리자      | 위 + Team                     |
 
 ## 디자인
 
 - **디자인 파일**: `pencil.pen` (Pencil MCP 도구로 관리)
 - **구현**: Tailwind CSS + shadcn/ui로 디자인을 코드로 구현
-- 디자인 확인/수정 시 Pencil MCP 도구 사용 (절대 경로: `/Users/joshua.oh/development/soccer-record/pencil.pen`)
+- 디자인 확인/수정 시 Pencil MCP 도구 사용 (절대 경로: `/Users/ejoh/SLS-Young-Futsal-League/pencil.pen`)
 
 ## 상세 기획
 

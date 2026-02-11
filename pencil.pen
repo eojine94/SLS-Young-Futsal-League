@@ -457,7 +457,7 @@
                           "iconFontName": "calendar"
                         },
                         "k55bY": {
-                          "content": "일정"
+                          "content": "경기"
                         }
                       }
                     }
@@ -772,6 +772,42 @@
                       "gap": 8,
                       "alignItems": "center",
                       "children": [
+                        {
+                          "type": "text",
+                          "id": "v1VRN",
+                          "name": "Score",
+                          "enabled": false,
+                          "fill": "$accent-primary",
+                          "content": "3 : 1",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "lwMhs",
+                          "name": "Tag",
+                          "enabled": false,
+                          "fill": "#F97316",
+                          "cornerRadius": 4,
+                          "padding": [
+                            2,
+                            6
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "92ZpP",
+                              "name": "TagText",
+                              "fill": "#FFFFFF",
+                              "content": "결과 등록 필요",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
                         {
                           "type": "text",
                           "id": "8JFIK",
@@ -1244,6 +1280,55 @@
               "justifyContent": "center",
               "alignItems": "center",
               "children": [
+                {
+                  "type": "frame",
+                  "id": "bSL2a",
+                  "name": "Home",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "7Cx5a",
+                      "name": "Team Name",
+                      "fill": "$text-primary",
+                      "content": "FC Thunder",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ueKaU",
+                      "name": "Score Box",
+                      "width": 64,
+                      "height": 48,
+                      "cornerRadius": "$radius-md",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1.5,
+                        "fill": "$border-default"
+                      },
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "vrh6V",
+                          "name": "Score",
+                          "fill": "$text-primary",
+                          "content": "0",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
                 {
                   "type": "text",
                   "id": "rbvB1",
@@ -2157,7 +2242,7 @@
     {
       "type": "frame",
       "id": "VzXaa",
-      "x": 580,
+      "x": 1160,
       "y": 6028,
       "name": "Rank",
       "width": 480,
@@ -2179,7 +2264,7 @@
           "height": "fill_container",
           "layout": "vertical",
           "padding": [
-            16,
+            24,
             20
           ],
           "children": [
@@ -2293,6 +2378,18 @@
                       }
                     },
                     {
+                      "id": "0cQeP",
+                      "type": "ref",
+                      "ref": "93ikl",
+                      "width": 40,
+                      "name": "drawHdr",
+                      "descendants": {
+                        "DwQvt": {
+                          "content": "무"
+                        }
+                      }
+                    },
+                    {
                       "id": "pdqXp",
                       "type": "ref",
                       "ref": "93ikl",
@@ -2377,6 +2474,19 @@
                           "content": "8",
                           "fontWeight": "600",
                           "fill": "$accent-primary",
+                          "textAlign": "center"
+                        }
+                      }
+                    },
+                    {
+                      "id": "mwOpV",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": 40,
+                      "name": "r1d",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "0",
                           "textAlign": "center"
                         }
                       }
@@ -2473,6 +2583,19 @@
                       }
                     },
                     {
+                      "id": "zRlH5",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": 40,
+                      "name": "r2d",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "1",
+                          "textAlign": "center"
+                        }
+                      }
+                    },
+                    {
                       "id": "ZqQo2",
                       "type": "ref",
                       "ref": "1mVcZ",
@@ -2480,7 +2603,7 @@
                       "name": "r2l",
                       "descendants": {
                         "USbjI": {
-                          "content": "3",
+                          "content": "2",
                           "textAlign": "center"
                         }
                       }
@@ -2559,6 +2682,19 @@
                           "content": "5",
                           "fontWeight": "600",
                           "fill": "$accent-primary",
+                          "textAlign": "center"
+                        }
+                      }
+                    },
+                    {
+                      "id": "6tbwC",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": 40,
+                      "name": "r3d",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "0",
                           "textAlign": "center"
                         }
                       }
@@ -2655,6 +2791,19 @@
                       }
                     },
                     {
+                      "id": "GBog1",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": 40,
+                      "name": "r4d",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "1",
+                          "textAlign": "center"
+                        }
+                      }
+                    },
+                    {
                       "id": "Cl2on",
                       "type": "ref",
                       "ref": "1mVcZ",
@@ -2662,7 +2811,7 @@
                       "name": "r4l",
                       "descendants": {
                         "USbjI": {
-                          "content": "6",
+                          "content": "5",
                           "textAlign": "center"
                         }
                       }
@@ -2741,6 +2890,19 @@
                           "content": "3",
                           "fontWeight": "600",
                           "fill": "$accent-primary",
+                          "textAlign": "center"
+                        }
+                      }
+                    },
+                    {
+                      "id": "q01ud",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": 40,
+                      "name": "r5d",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "0",
                           "textAlign": "center"
                         }
                       }
@@ -2837,6 +2999,19 @@
                       }
                     },
                     {
+                      "id": "0HuQv",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": 40,
+                      "name": "r6d",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "0",
+                          "textAlign": "center"
+                        }
+                      }
+                    },
+                    {
                       "id": "BNWLC",
                       "type": "ref",
                       "ref": "1mVcZ",
@@ -2928,6 +3103,19 @@
                       }
                     },
                     {
+                      "id": "FvCcJ",
+                      "type": "ref",
+                      "ref": "1mVcZ",
+                      "width": 40,
+                      "name": "r7d",
+                      "descendants": {
+                        "USbjI": {
+                          "content": "0",
+                          "textAlign": "center"
+                        }
+                      }
+                    },
+                    {
                       "id": "PnjOE",
                       "type": "ref",
                       "ref": "1mVcZ",
@@ -3000,8 +3188,8 @@
     {
       "type": "frame",
       "id": "4Sd5g",
-      "x": 1160,
-      "y": 8110,
+      "x": 580,
+      "y": 10270,
       "name": "Schedule - Add",
       "width": 480,
       "height": 850,
@@ -3415,9 +3603,9 @@
     {
       "type": "frame",
       "id": "t4ARl",
-      "x": 1160,
-      "y": 6028,
-      "name": "Schedule",
+      "x": 580,
+      "y": 7102,
+      "name": "Match (Admin)",
       "width": 480,
       "height": 850,
       "fill": "$bg-primary",
@@ -3427,12 +3615,18 @@
           "id": "g2M8a",
           "type": "ref",
           "ref": "ZbBxZ",
-          "name": "ph"
+          "name": "ph",
+          "descendants": {
+            "d2NPB": {
+              "iconFontName": "log-out"
+            }
+          }
         },
         {
           "type": "frame",
           "id": "Btsha",
           "name": "Content",
+          "clip": true,
           "width": "fill_container",
           "height": "fill_container",
           "layout": "vertical",
@@ -3457,21 +3651,42 @@
               ],
               "children": [
                 {
-                  "type": "text",
-                  "id": "0RMEe",
-                  "name": "gt1",
-                  "fill": "$text-primary",
-                  "content": "경기 일정",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
+                  "type": "frame",
+                  "id": "w1yRu",
+                  "name": "headerRow",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "0RMEe",
+                      "name": "gt1",
+                      "fill": "$text-primary",
+                      "content": "경기",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "id": "9IVdm",
+                      "type": "ref",
+                      "ref": "AXXc3",
+                      "name": "addBtn",
+                      "descendants": {
+                        "6EEkr": {
+                          "content": "경기 등록"
+                        }
+                      }
+                    }
+                  ]
                 },
                 {
                   "type": "text",
                   "id": "lJ6mA",
                   "name": "gt2",
                   "fill": "$text-secondary",
-                  "content": "예정된 경기를 확인할 수 있습니다.",
+                  "content": "예정된 경기를 탭하면 일정을 수정하고,\n완료된 경기를 탭하면 결과를 등록할 수 있습니다.",
                   "fontFamily": "Inter",
                   "fontSize": 13,
                   "fontWeight": "normal"
@@ -3480,8 +3695,113 @@
             },
             {
               "type": "frame",
+              "id": "ft0UJ",
+              "name": "Date Group Past 1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "id": "gngby",
+                  "type": "ref",
+                  "ref": "AYyQs",
+                  "name": "dh1",
+                  "descendants": {
+                    "rMuGZ": {
+                      "content": "2025.01.25(토)"
+                    }
+                  }
+                },
+                {
+                  "id": "ol7G0",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "mc1",
+                  "descendants": {
+                    "EEvm0": {
+                      "content": "FC Thunder vs FC Lightning"
+                    },
+                    "v1VRN": {
+                      "enabled": true,
+                      "content": "3 : 1"
+                    },
+                    "8JFIK": {
+                      "content": "14:00"
+                    },
+                    "1kYcV": {
+                      "content": "마포풋살장"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jsznk",
+              "name": "Date Group Past 2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "id": "oNkB1",
+                  "type": "ref",
+                  "ref": "AYyQs",
+                  "name": "dh2",
+                  "descendants": {
+                    "rMuGZ": {
+                      "content": "2025.02.01(토)"
+                    }
+                  }
+                },
+                {
+                  "id": "psmP9",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "mc2",
+                  "descendants": {
+                    "EEvm0": {
+                      "content": "FC Storm vs FC Wave"
+                    },
+                    "v1VRN": {
+                      "enabled": true,
+                      "content": "2 : 2"
+                    },
+                    "8JFIK": {
+                      "content": "15:00"
+                    },
+                    "1kYcV": {
+                      "content": "B구장"
+                    }
+                  }
+                },
+                {
+                  "id": "tKq8K",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "mc3",
+                  "descendants": {
+                    "EEvm0": {
+                      "content": "FC Blaze vs FC Dynamo"
+                    },
+                    "v1VRN": {
+                      "enabled": true,
+                      "content": "4 : 2"
+                    },
+                    "8JFIK": {
+                      "content": "16:00"
+                    },
+                    "1kYcV": {
+                      "content": "C구장"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
               "id": "Pot6x",
-              "name": "Date Group 1",
+              "name": "Date Group Past 3",
               "width": "fill_container",
               "layout": "vertical",
               "gap": 12,
@@ -3490,13 +3810,23 @@
                   "id": "FTUzf",
                   "type": "ref",
                   "ref": "AYyQs",
-                  "name": "dh1"
+                  "name": "dh1",
+                  "descendants": {
+                    "rMuGZ": {
+                      "content": "2025.02.08(토)"
+                    }
+                  }
                 },
                 {
                   "id": "I357m",
                   "type": "ref",
                   "ref": "RcJ4y",
-                  "name": "m1"
+                  "name": "m1",
+                  "descendants": {
+                    "lwMhs": {
+                      "enabled": true
+                    }
+                  }
                 },
                 {
                   "id": "QFyjd",
@@ -3506,6 +3836,9 @@
                   "descendants": {
                     "EEvm0": {
                       "content": "FC Lightning vs FC Wave"
+                    },
+                    "lwMhs": {
+                      "enabled": true
                     },
                     "8JFIK": {
                       "content": "16:00"
@@ -3596,204 +3929,8 @@
           ]
         },
         {
-          "id": "jzSVT",
-          "type": "ref",
-          "ref": "YrKxe",
-          "name": "nav",
-          "descendants": {
-            "mQbVh": {
-              "id": "TSDR7",
-              "type": "ref",
-              "ref": "IvFPY",
-              "name": "nt1",
-              "descendants": {
-                "3EvnC": {
-                  "iconFontName": "house"
-                },
-                "k55bY": {
-                  "content": "홈"
-                }
-              }
-            },
-            "TDbCC": {
-              "id": "qwCZH",
-              "type": "ref",
-              "ref": "OI4Oi",
-              "name": "nt3",
-              "descendants": {
-                "Tv0yf": {
-                  "iconFontName": "calendar"
-                },
-                "nd1fR": {
-                  "content": "일정"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "nIM2U",
-      "x": 1740,
-      "y": 6028,
-      "name": "Result",
-      "width": 480,
-      "height": 850,
-      "fill": "$bg-primary",
-      "layout": "vertical",
-      "children": [
-        {
-          "id": "1psrd",
-          "type": "ref",
-          "ref": "ZbBxZ",
-          "name": "ph",
-          "descendants": {
-            "GJumk": {
-              "content": "KICKLOG"
-            },
-            "d2NPB": {
-              "enabled": false
-            }
-          }
-        },
-        {
           "type": "frame",
-          "id": "EP3z8",
-          "name": "Content",
-          "width": "fill_container",
-          "height": "fill_container",
-          "layout": "vertical",
-          "gap": 24,
-          "padding": [
-            24,
-            20
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "1h0tA",
-              "name": "guide",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 4,
-              "padding": [
-                0,
-                0,
-                8,
-                0
-              ],
-              "children": [
-                {
-                  "type": "text",
-                  "id": "QePJz",
-                  "name": "gt1",
-                  "fill": "$text-primary",
-                  "content": "결과 미등록 경기",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "text",
-                  "id": "UoHUy",
-                  "name": "gt2",
-                  "fill": "$text-secondary",
-                  "content": "경기를 선택하여 결과를 등록하세요.",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "GGSWd",
-              "name": "Date Group 1",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 12,
-              "children": [
-                {
-                  "id": "hq0Ll",
-                  "type": "ref",
-                  "ref": "AYyQs",
-                  "name": "dh1",
-                  "descendants": {
-                    "rMuGZ": {
-                      "content": "2025.02.01(토)"
-                    }
-                  }
-                },
-                {
-                  "id": "Z4hrZ",
-                  "type": "ref",
-                  "ref": "RcJ4y",
-                  "name": "m1"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "kvzqA",
-              "name": "Date Group 2",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 12,
-              "children": [
-                {
-                  "id": "z2Bqb",
-                  "type": "ref",
-                  "ref": "AYyQs",
-                  "name": "dh2",
-                  "descendants": {
-                    "rMuGZ": {
-                      "content": "2025.02.08(토)"
-                    }
-                  }
-                },
-                {
-                  "id": "9xFXf",
-                  "type": "ref",
-                  "ref": "RcJ4y",
-                  "name": "m2",
-                  "descendants": {
-                    "EEvm0": {
-                      "content": "FC Lightning vs FC Wave"
-                    },
-                    "8JFIK": {
-                      "content": "16:00"
-                    },
-                    "1kYcV": {
-                      "content": "B구장"
-                    }
-                  }
-                },
-                {
-                  "id": "jKRWn",
-                  "type": "ref",
-                  "ref": "RcJ4y",
-                  "name": "m3",
-                  "descendants": {
-                    "EEvm0": {
-                      "content": "FC Blaze vs FC Dynamo"
-                    },
-                    "8JFIK": {
-                      "content": "15:00"
-                    },
-                    "1kYcV": {
-                      "content": "C구장"
-                    }
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "eBaHF",
+          "id": "SsozX",
           "name": "AdminNavBar",
           "width": "fill_container",
           "height": 62,
@@ -3814,10 +3951,10 @@
           "alignItems": "center",
           "children": [
             {
-              "id": "yVL5b",
+              "id": "hsi8E",
               "type": "ref",
               "ref": "IvFPY",
-              "name": "n1",
+              "name": "mn1",
               "descendants": {
                 "3EvnC": {
                   "iconFontName": "house"
@@ -3828,10 +3965,10 @@
               }
             },
             {
-              "id": "uaZoB",
+              "id": "4mTjh",
               "type": "ref",
               "ref": "IvFPY",
-              "name": "n2",
+              "name": "mn2",
               "descendants": {
                 "3EvnC": {
                   "iconFontName": "trophy"
@@ -3842,44 +3979,30 @@
               }
             },
             {
-              "id": "QEEnW",
+              "id": "44LIT",
               "type": "ref",
-              "ref": "IvFPY",
-              "name": "n3",
+              "ref": "OI4Oi",
+              "name": "mn3",
               "descendants": {
-                "3EvnC": {
+                "Tv0yf": {
                   "iconFontName": "calendar"
                 },
-                "k55bY": {
-                  "content": "일정"
+                "nd1fR": {
+                  "content": "경기"
                 }
               }
             },
             {
-              "id": "TN4Df",
+              "id": "vWnEP",
               "type": "ref",
               "ref": "IvFPY",
-              "name": "n4",
+              "name": "mn4",
               "descendants": {
                 "3EvnC": {
                   "iconFontName": "users"
                 },
                 "k55bY": {
                   "content": "팀"
-                }
-              }
-            },
-            {
-              "id": "hTAat",
-              "type": "ref",
-              "ref": "OI4Oi",
-              "name": "n5",
-              "descendants": {
-                "Tv0yf": {
-                  "iconFontName": "pencil"
-                },
-                "nd1fR": {
-                  "content": "결과"
                 }
               }
             }
@@ -3890,7 +4013,7 @@
     {
       "type": "frame",
       "id": "xSAv0",
-      "x": 2320,
+      "x": 1740,
       "y": 6028,
       "name": "Team",
       "width": 480,
@@ -4121,7 +4244,7 @@
                   "iconFontName": "calendar"
                 },
                 "k55bY": {
-                  "content": "일정"
+                  "content": "경기"
                 }
               }
             },
@@ -4138,20 +4261,6 @@
                   "content": "팀"
                 }
               }
-            },
-            {
-              "id": "N8Y8L",
-              "type": "ref",
-              "ref": "IvFPY",
-              "name": "n5",
-              "descendants": {
-                "3EvnC": {
-                  "iconFontName": "pencil"
-                },
-                "k55bY": {
-                  "content": "결과"
-                }
-              }
             }
           ]
         }
@@ -4160,7 +4269,7 @@
     {
       "type": "frame",
       "id": "BmSip",
-      "x": 580,
+      "x": 1160,
       "y": 7102,
       "name": "Rank - Team Detail",
       "width": 480,
@@ -4211,7 +4320,7 @@
           "height": "fill_container",
           "layout": "vertical",
           "padding": [
-            8,
+            24,
             20
           ],
           "children": [
@@ -4660,8 +4769,8 @@
     {
       "type": "frame",
       "id": "b8eIy",
-      "x": 1740,
-      "y": 7102,
+      "x": 580,
+      "y": 8158,
       "name": "Result - Add",
       "width": 480,
       "height": 850,
@@ -4715,7 +4824,7 @@
               "type": "frame",
               "id": "T13rx",
               "x": 20,
-              "y": 16,
+              "y": 24,
               "name": "guide",
               "width": "fill_container(440)",
               "layout": "vertical",
@@ -4740,6 +4849,16 @@
                   "fontFamily": "Inter",
                   "fontSize": 13,
                   "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "vs7lA",
+                  "name": "MatchInfo",
+                  "fill": "$text-primary",
+                  "content": "2025.02.15(토) 14:00  마포풋살장",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
                 }
               ]
             },
@@ -4750,7 +4869,7 @@
               "name": "si",
               "x": 20,
               "width": 440,
-              "y": 78,
+              "y": 116,
               "descendants": {
                 "6dBtq": {
                   "content": "1"
@@ -4764,13 +4883,13 @@
               "name": "div",
               "x": 20,
               "width": 440,
-              "y": 207
+              "y": 245
             },
             {
               "type": "frame",
               "id": "Kumke",
               "x": 20,
-              "y": 224,
+              "y": 262,
               "name": "TeamAHeader",
               "width": "fill_container(440)",
               "justifyContent": "space_between",
@@ -4802,7 +4921,7 @@
               "type": "frame",
               "id": "Arouw",
               "x": 20,
-              "y": 258,
+              "y": 296,
               "name": "TeamAList",
               "clip": true,
               "width": "fill_container(440)",
@@ -4953,7 +5072,7 @@
               "type": "frame",
               "id": "SLDp9",
               "x": 20,
-              "y": 370,
+              "y": 408,
               "name": "TeamBHeader",
               "width": "fill_container(440)",
               "justifyContent": "space_between",
@@ -4985,7 +5104,7 @@
               "type": "frame",
               "id": "KC3KB",
               "x": 20,
-              "y": 404,
+              "y": 442,
               "name": "TeamBList",
               "clip": true,
               "width": "fill_container(440)",
@@ -5069,7 +5188,7 @@
               "width": "fill_container(440)",
               "name": "rb",
               "x": 20,
-              "y": 730,
+              "y": 738,
               "descendants": {
                 "6EEkr": {
                   "content": "결과 등록"
@@ -5083,7 +5202,7 @@
     {
       "type": "frame",
       "id": "yG2KN",
-      "x": 2320,
+      "x": 1740,
       "y": 7102,
       "name": "Team - Players",
       "width": 480,
@@ -5102,27 +5221,47 @@
             0,
             20
           ],
+          "justifyContent": "space_between",
           "alignItems": "center",
           "children": [
             {
-              "type": "icon_font",
-              "id": "FPzWp",
-              "name": "pmbi",
-              "width": 24,
-              "height": 24,
-              "iconFontName": "chevron-left",
-              "iconFontFamily": "lucide",
-              "fill": "$text-primary"
+              "type": "frame",
+              "id": "AqQEc",
+              "name": "leftGroup",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "FPzWp",
+                  "name": "pmbi",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "chevron-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-primary"
+                },
+                {
+                  "type": "text",
+                  "id": "wEqFm",
+                  "name": "pmt",
+                  "fill": "$text-primary",
+                  "content": "FC Thunder",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "600"
+                }
+              ]
             },
             {
-              "type": "text",
-              "id": "wEqFm",
-              "name": "pmt",
-              "fill": "$text-primary",
-              "content": "FC Thunder",
-              "fontFamily": "Inter",
-              "fontSize": 20,
-              "fontWeight": "600"
+              "type": "icon_font",
+              "id": "R6kRj",
+              "name": "settingsIcon",
+              "width": 24,
+              "height": 24,
+              "iconFontName": "settings",
+              "iconFontFamily": "lucide",
+              "fill": "$text-secondary"
             }
           ]
         },
@@ -5135,7 +5274,7 @@
           "layout": "vertical",
           "gap": 16,
           "padding": [
-            16,
+            24,
             20
           ],
           "children": [
@@ -5255,8 +5394,8 @@
     {
       "type": "frame",
       "id": "PnzT9",
-      "x": 1160,
-      "y": 9168,
+      "x": 580,
+      "y": 11319,
       "name": "Schedule - Edit",
       "width": 480,
       "height": 850,
@@ -5662,6 +5801,18 @@
                   "content": "일정 수정"
                 }
               }
+            },
+            {
+              "id": "2E6Bx",
+              "type": "ref",
+              "ref": "7ophr",
+              "width": "fill_container",
+              "name": "delBtn",
+              "descendants": {
+                "9KUu0": {
+                  "content": "일정 삭제"
+                }
+              }
             }
           ]
         }
@@ -5670,8 +5821,8 @@
     {
       "type": "frame",
       "id": "pAddScr",
-      "x": 2320,
-      "y": 8110,
+      "x": 1740,
+      "y": 8158,
       "name": "Team - Player Add",
       "width": 480,
       "height": 850,
@@ -6005,8 +6156,8 @@
     {
       "type": "frame",
       "id": "pEditScr",
-      "x": 2320,
-      "y": 9168,
+      "x": 1740,
+      "y": 9214,
       "name": "Team - Player Edit",
       "width": 480,
       "height": 850,
@@ -6287,8 +6438,8 @@
     {
       "type": "frame",
       "id": "ZxO4Z",
-      "x": 1740,
-      "y": 8110,
+      "x": 580,
+      "y": 9214,
       "name": "Result - Select Player",
       "width": 480,
       "height": 850,
@@ -6989,7 +7140,7 @@
     {
       "type": "frame",
       "id": "PfSHb",
-      "x": 2879,
+      "x": 2320,
       "y": 6028,
       "name": "Delete Confirm Dialog",
       "width": 480,
@@ -7105,8 +7256,8 @@
     {
       "type": "frame",
       "id": "HGZkm",
-      "x": 2879,
-      "y": 8110,
+      "x": 2320,
+      "y": 7102,
       "name": "Team - Add",
       "width": 480,
       "height": 850,
@@ -7231,8 +7382,8 @@
     {
       "type": "frame",
       "id": "Rx2Yv",
-      "x": 2879,
-      "y": 9168,
+      "x": 2320,
+      "y": 8158,
       "name": "Team - Edit",
       "width": 480,
       "height": 850,
@@ -7372,6 +7523,368 @@
                   }
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "DY6N9",
+      "x": 580,
+      "y": 6028,
+      "name": "Match",
+      "width": 480,
+      "height": 850,
+      "fill": "$bg-primary",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "cefb3",
+          "type": "ref",
+          "ref": "ZbBxZ",
+          "name": "ph",
+          "descendants": {
+            "d2NPB": {
+              "iconFontName": "key"
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "7LqOc",
+          "name": "Content",
+          "clip": true,
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 28,
+          "padding": [
+            24,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "YeBkl",
+              "name": "guide",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [
+                0,
+                0,
+                8,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "A8Gny",
+                  "name": "gt1",
+                  "fill": "$text-primary",
+                  "content": "경기",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "23P16",
+                  "name": "gt2",
+                  "fill": "$text-secondary",
+                  "content": "모든 경기 일정과 결과를 확인할 수 있습니다.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bG8Di",
+              "name": "Date Group Past 1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "id": "quwLO",
+                  "type": "ref",
+                  "ref": "AYyQs",
+                  "name": "dh1",
+                  "descendants": {
+                    "rMuGZ": {
+                      "content": "2025.01.25(토)"
+                    }
+                  }
+                },
+                {
+                  "id": "nl2Xv",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "mc1",
+                  "descendants": {
+                    "EEvm0": {
+                      "content": "FC Thunder vs FC Lightning"
+                    },
+                    "v1VRN": {
+                      "enabled": true,
+                      "content": "3 : 1"
+                    },
+                    "8JFIK": {
+                      "content": "14:00"
+                    },
+                    "1kYcV": {
+                      "content": "마포풋살장"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "PhQZM",
+              "name": "Date Group Past 2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "id": "5JJDU",
+                  "type": "ref",
+                  "ref": "AYyQs",
+                  "name": "dh2",
+                  "descendants": {
+                    "rMuGZ": {
+                      "content": "2025.02.01(토)"
+                    }
+                  }
+                },
+                {
+                  "id": "aOPio",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "mc2",
+                  "descendants": {
+                    "EEvm0": {
+                      "content": "FC Storm vs FC Wave"
+                    },
+                    "v1VRN": {
+                      "enabled": true,
+                      "content": "2 : 2"
+                    },
+                    "8JFIK": {
+                      "content": "15:00"
+                    },
+                    "1kYcV": {
+                      "content": "B구장"
+                    }
+                  }
+                },
+                {
+                  "id": "AgMBC",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "mc3",
+                  "descendants": {
+                    "EEvm0": {
+                      "content": "FC Blaze vs FC Dynamo"
+                    },
+                    "v1VRN": {
+                      "enabled": true,
+                      "content": "4 : 2"
+                    },
+                    "8JFIK": {
+                      "content": "16:00"
+                    },
+                    "1kYcV": {
+                      "content": "C구장"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NHkGQ",
+              "name": "Date Group 1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "id": "cajj3",
+                  "type": "ref",
+                  "ref": "AYyQs",
+                  "name": "dh1"
+                },
+                {
+                  "id": "8AqID",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "m1"
+                },
+                {
+                  "id": "WlQ4B",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "m2",
+                  "descendants": {
+                    "EEvm0": {
+                      "content": "FC Lightning vs FC Wave"
+                    },
+                    "8JFIK": {
+                      "content": "16:00"
+                    },
+                    "1kYcV": {
+                      "content": "B구장"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lIzlh",
+              "name": "Date Group 2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "id": "oZlhv",
+                  "type": "ref",
+                  "ref": "AYyQs",
+                  "name": "dh2",
+                  "descendants": {
+                    "rMuGZ": {
+                      "content": "2025.02.22(토)"
+                    }
+                  }
+                },
+                {
+                  "id": "abnp4",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "m3",
+                  "descendants": {
+                    "EEvm0": {
+                      "content": "FC Thunder vs FC Lightning"
+                    },
+                    "8JFIK": {
+                      "content": "14:00"
+                    },
+                    "1kYcV": {
+                      "content": "마포풋살장"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "iY4XF",
+              "name": "Date Group 3",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "id": "4RZd2",
+                  "type": "ref",
+                  "ref": "AYyQs",
+                  "name": "dh3",
+                  "descendants": {
+                    "rMuGZ": {
+                      "content": "2025.03.01(토)"
+                    }
+                  }
+                },
+                {
+                  "id": "Ltrib",
+                  "type": "ref",
+                  "ref": "RcJ4y",
+                  "name": "m4",
+                  "descendants": {
+                    "EEvm0": {
+                      "content": "FC Storm vs FC Wave"
+                    },
+                    "8JFIK": {
+                      "content": "15:00"
+                    },
+                    "1kYcV": {
+                      "content": "C구장"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "obwbb",
+          "name": "NavBar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "$bg-primary",
+          "cornerRadius": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.5,
+            "fill": "#E4E4E7"
+          },
+          "padding": 4,
+          "justifyContent": "space_around",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "Z0yJP",
+              "type": "ref",
+              "ref": "IvFPY",
+              "name": "mn1",
+              "descendants": {
+                "3EvnC": {
+                  "iconFontName": "house"
+                },
+                "k55bY": {
+                  "content": "홈"
+                }
+              }
+            },
+            {
+              "id": "bicep",
+              "type": "ref",
+              "ref": "IvFPY",
+              "name": "mn2",
+              "descendants": {
+                "3EvnC": {
+                  "iconFontName": "trophy"
+                },
+                "k55bY": {
+                  "content": "순위"
+                }
+              }
+            },
+            {
+              "id": "WZVj2",
+              "type": "ref",
+              "ref": "OI4Oi",
+              "name": "mn3",
+              "descendants": {
+                "Tv0yf": {
+                  "iconFontName": "calendar"
+                },
+                "nd1fR": {
+                  "content": "경기"
+                }
+              }
             }
           ]
         }
