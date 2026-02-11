@@ -8,7 +8,7 @@ export default function RankPage() {
     <>
       <PageHeader onAuthClick={() => navigate('/login')} />
       <div className="px-5 py-6">
-        <p className="text-sm text-[#A1A1AA]">순위 화면입니다.</p>
+        <p className="text-sm text-muted-foreground">순위 화면입니다.</p>
       </div>
     </>
   )

@@ -9,7 +9,7 @@ export default function LoginPage() {
     >
       <BackHeader />
       <div className="flex flex-col items-center justify-center gap-10 px-10 pt-10">
-        <p className="text-sm text-[#A1A1AA]">관리자 로그인 화면입니다.</p>
+        <p className="text-sm text-muted-foreground">관리자 로그인 화면입니다.</p>
       </div>
     </div>
   )

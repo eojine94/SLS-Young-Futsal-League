@@ -17,7 +17,7 @@ export function BottomNav({ isAdmin = false }: BottomNavProps) {
   const items = isAdmin ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS
 
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white rounded-t-2xl border-t-[1.5px] border-[#E4E4E7] p-1 z-50">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-card rounded-t-2xl border-t-[1.5px] border-border p-1 z-50">
       <ul className="flex justify-around items-center">
         {items.map(({ to, label, icon: Icon }) => (
           <li key={to}>
@@ -27,7 +27,7 @@ export function BottomNav({ isAdmin = false }: BottomNavProps) {
               className={({ isActive }) =>
                 `flex flex-col items-center justify-center gap-1 py-2 px-3.5 text-[11px] transition-colors ${
                   isActive
-                    ? 'text-[#2563EB] font-semibold'
+                    ? 'text-primary font-semibold'
                     : 'text-muted-foreground'
                 }`
               }

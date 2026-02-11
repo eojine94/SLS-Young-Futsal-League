@@ -16,11 +16,11 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <header className="flex items-center justify-between h-14 px-6 bg-white">
-      <h1 className="text-xl font-semibold tracking-tight text-[#18181B]">
+      <h1 className="text-xl font-semibold tracking-tight text-foreground">
         {title}
       </h1>
       {showAuth && (
-        <button onClick={onAuthClick} className="p-1 text-[#71717A] cursor-pointer">
+        <button onClick={onAuthClick} className="p-1 text-muted-foreground cursor-pointer">
           {isAdmin ? (
             <LogOut className="size-6" />
           ) : (
@@ -39,7 +39,7 @@ export function BackHeader() {
     <header className="flex items-center h-14 px-5 bg-white">
       <button
         onClick={() => navigate(-1)}
-        className="p-1 -ml-1 text-[#18181B] cursor-pointer"
+        className="p-1 -ml-1 text-foreground cursor-pointer"
       >
         <ChevronLeft className="size-6" />
       </button>
