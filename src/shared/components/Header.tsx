@@ -1,27 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import { KeyRound, LogOut, ChevronLeft } from 'lucide-react';
+import { useAuth } from '@shared/hooks/useAuth';
 
-type PageHeaderProps = {
-  title?: string;
-  showAuth?: boolean;
-  isAdmin?: boolean;
-  onAuthClick?: () => void;
-};
+export function PageHeader() {
+  const navigate = useNavigate();
+  const { isAdmin, logout } = useAuth();
 
-export function PageHeader({
-  title = 'SLS FUTSAL LEAGUE',
-  showAuth = true,
-  isAdmin = false,
-  onAuthClick,
-}: PageHeaderProps) {
+  const handleAuthClick = () => {
+    if (isAdmin) {
+      logout();
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <header className="flex items-center justify-between h-14 px-6 bg-white">
-      <h1 className="text-xl font-semibold tracking-tight text-foreground">{title}</h1>
-      {showAuth && (
-        <button onClick={onAuthClick} className="p-1 text-muted-foreground cursor-pointer">
-          {isAdmin ? <LogOut className="size-6" /> : <KeyRound className="size-6" />}
-        </button>
-      )}
+      <h1 className="text-xl font-semibold tracking-tight text-foreground">SLS FUTSAL LEAGUE</h1>
+      <button onClick={handleAuthClick} className="p-1 text-muted-foreground cursor-pointer">
+        {isAdmin ? <LogOut className="size-6" /> : <KeyRound className="size-6" />}
+      </button>
     </header>
   );
 }
