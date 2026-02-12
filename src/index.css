@@ -90,3 +90,8 @@
     @apply bg-background text-foreground overscroll-none;
   }
 }
+
+/* Sonner toast를 Layout(480px) 안에 맞춤 */
+[data-sonner-toaster] {
+  --width: min(calc(100vw - 40px), 440px) !important;
+}
