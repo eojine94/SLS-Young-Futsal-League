@@ -2,19 +2,25 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { toast } from 'sonner';
+import { useCreateTeam } from './hooks/useTeams';
 
 export default function TeamCreatePage() {
   const navigate = useNavigate();
+  const createTeam = useCreateTeam();
   const [name, setName] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!name.trim()) {
       toast.error('팀명을 입력하세요.');
       return;
     }
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success('팀이 생성되었습니다.');
-    navigate('/team');
+    try {
+      await createTeam.mutateAsync(name.trim());
+      toast.success('팀이 생성되었습니다.');
+      navigate('/team');
+    } catch {
+      toast.error('팀 생성에 실패했습니다.');
+    }
   };
 
   return (
@@ -52,9 +58,10 @@ export default function TeamCreatePage() {
         {/* Submit Button */}
         <button
           onClick={handleSubmit}
-          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white"
+          disabled={createTeam.isPending}
+          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          팀 생성
+          {createTeam.isPending ? '생성 중...' : '팀 생성'}
         </button>
       </div>
     </>

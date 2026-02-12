@@ -9,27 +9,46 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@shared/components/ui/select';
-import { MOCK_PLAYERS } from './mocks';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { usePlayer, useUpdatePlayer } from './hooks/usePlayers';
 
 export default function PlayerEditPage() {
   const { teamId, playerId } = useParams<{ teamId: string; playerId: string }>();
   const navigate = useNavigate();
 
-  const player = MOCK_PLAYERS.find((p) => p.id === playerId);
+  const { data: player, isLoading } = usePlayer(playerId!);
+  const updatePlayer = useUpdatePlayer();
 
-  const [name, setName] = useState(player?.name ?? '');
-  const [number, setNumber] = useState(String(player?.number ?? 0));
-  const [role, setRole] = useState<'leader' | 'member'>(player?.role ?? 'member');
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('0');
+  const [role, setRole] = useState<'leader' | 'member'>('member');
+  const [initialized, setInitialized] = useState(false);
 
-  const handleSubmit = () => {
+  if (player && !initialized) {
+    setName(player.name);
+    setNumber(String(player.number));
+    setRole(player.role);
+    setInitialized(true);
+  }
+
+  const handleSubmit = async () => {
     if (!name.trim()) {
       toast.error('이름을 입력하세요.');
       return;
     }
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success('선수 정보가 수정되었습니다.');
-    navigate(`/team/${teamId}`);
+    try {
+      await updatePlayer.mutateAsync({
+        id: playerId!,
+        updates: { name: name.trim(), number: Number(number), role },
+      });
+      toast.success('선수 정보가 수정되었습니다.');
+      navigate(`/team/${teamId}`);
+    } catch {
+      toast.error('선수 수정에 실패했습니다.');
+    }
   };
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <>
@@ -93,9 +112,10 @@ export default function PlayerEditPage() {
         {/* Submit Button */}
         <button
           onClick={handleSubmit}
-          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white"
+          disabled={updatePlayer.isPending}
+          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          선수 수정
+          {updatePlayer.isPending ? '수정 중...' : '선수 수정'}
         </button>
       </div>
     </>

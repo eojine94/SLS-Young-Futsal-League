@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@shared/components/ui/select';
+import { useCreatePlayers } from './hooks/usePlayers';
 
 type PlayerForm = {
   name: string;
@@ -25,6 +26,7 @@ const createEmptyForm = (): PlayerForm => ({
 export default function PlayerCreatePage() {
   const { teamId } = useParams<{ teamId: string }>();
   const navigate = useNavigate();
+  const createPlayers = useCreatePlayers();
 
   const [forms, setForms] = useState<PlayerForm[]>([createEmptyForm()]);
 
@@ -41,16 +43,27 @@ export default function PlayerCreatePage() {
     setForms((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     for (let i = 0; i < forms.length; i++) {
       if (!forms[i].name.trim()) {
         toast.error(`선수 ${i + 1}의 이름을 입력하세요.`);
         return;
       }
     }
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success('선수가 등록되었습니다.');
-    navigate(`/team/${teamId}`);
+    try {
+      await createPlayers.mutateAsync(
+        forms.map((f) => ({
+          name: f.name.trim(),
+          number: Number(f.number),
+          team_id: teamId!,
+          role: f.role,
+        })),
+      );
+      toast.success('선수가 등록되었습니다.');
+      navigate(`/team/${teamId}`);
+    } catch {
+      toast.error('선수 등록에 실패했습니다.');
+    }
   };
 
   return (
@@ -145,9 +158,10 @@ export default function PlayerCreatePage() {
         {/* Submit Button */}
         <button
           onClick={handleSubmit}
-          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white"
+          disabled={createPlayers.isPending}
+          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          선수 등록
+          {createPlayers.isPending ? '등록 중...' : '선수 등록'}
         </button>
       </div>
     </>

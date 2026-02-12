@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { Users, ChevronRight } from 'lucide-react';
 import { PageHeader } from '@shared/components/Header';
-import { MOCK_TEAMS } from './mocks';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { ErrorMessage } from '@shared/components/ErrorMessage';
+import { useTeams } from './hooks/useTeams';
 
 export default function TeamPage() {
   const navigate = useNavigate();
+  const { data: teams, isLoading, error } = useTeams();
 
   return (
     <>
@@ -22,29 +25,35 @@ export default function TeamPage() {
         </div>
 
         {/* Team List */}
-        <div className="mt-5 overflow-hidden rounded-xl border-[1.5px] border-border">
-          {MOCK_TEAMS.map((team) => (
-            <button
-              key={team.id}
-              onClick={() => navigate(`/team/${team.id}`)}
-              className="flex h-16 w-full cursor-pointer items-center justify-between border-b border-border px-4 last:border-b-0"
-            >
-              {/* Left: Icon + Name */}
-              <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
-                  <Users className="size-5 text-primary" />
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : error ? (
+          <ErrorMessage />
+        ) : (
+          <div className="mt-5 overflow-hidden rounded-xl border-[1.5px] border-border">
+            {teams?.map((team) => (
+              <button
+                key={team.id}
+                onClick={() => navigate(`/team/${team.id}`)}
+                className="flex h-16 w-full cursor-pointer items-center justify-between border-b border-border px-4 last:border-b-0"
+              >
+                {/* Left: Icon + Name */}
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
+                    <Users className="size-5 text-primary" />
+                  </div>
+                  <span className="text-[15px] font-medium text-foreground">{team.name}</span>
                 </div>
-                <span className="text-[15px] font-medium text-foreground">{team.name}</span>
-              </div>
 
-              {/* Right: Count + Chevron */}
-              <div className="flex items-center gap-2">
-                <span className="text-[13px] text-muted-foreground">{team.playerCount}명</span>
-                <ChevronRight className="size-5 text-muted-foreground/60" />
-              </div>
-            </button>
-          ))}
-        </div>
+                {/* Right: Count + Chevron */}
+                <div className="flex items-center gap-2">
+                  <span className="text-[13px] text-muted-foreground">{team.playerCount}명</span>
+                  <ChevronRight className="size-5 text-muted-foreground/60" />
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
