@@ -1,35 +1,36 @@
+import { useMemo } from 'react';
 import { SectionTitle } from '@shared/components/SectionTitle';
 import { DateHeader } from '@shared/components/DateHeader';
 import { MatchCard } from '@shared/components/MatchCard';
-
-type MatchSchedule = {
-  id: string;
-  teams: string;
-  time: string;
-  location: string;
-};
-
-const MOCK_DATE = '2025.02.15(토)';
-
-const MOCK_MATCHES: MatchSchedule[] = [
-  { id: '1', teams: 'FC Thunder vs FC Storm', time: '14:00', location: 'A구장' },
-  { id: '2', teams: 'FC Lightning vs FC Wave', time: '16:00', location: 'B구장' },
-  { id: '3', teams: 'FC Blaze vs FC Dynamo', time: '13:00', location: 'C구장' },
-  { id: '4', teams: 'FC United vs FC Thunder', time: '15:00', location: 'D구장' },
-  { id: '5', teams: 'FC Storm vs FC Wave', time: '17:00', location: 'A구장' },
-  { id: '6', teams: 'FC Lightning vs FC Blaze', time: '18:00', location: '마포풋살장' },
-];
+import { useMatches } from '@features/match/hooks/useMatches';
+import { isDatePast } from '@shared/utils/dateFormat';
 
 export function ScheduleSection() {
+  const { data: matches } = useMatches();
+
+  const nextDateMatches = useMemo(() => {
+    if (!matches) return null;
+
+    // Matches are sorted by date/time from API. Find first future match.
+    const futureMatches = matches.filter((m) => !isDatePast(m.rawDate));
+    if (futureMatches.length === 0) return null;
+
+    // Take all matches on the nearest future date
+    const firstDate = futureMatches[0].rawDate;
+    return futureMatches.filter((m) => m.rawDate === firstDate);
+  }, [matches]);
+
+  if (!nextDateMatches || nextDateMatches.length === 0) return null;
+
   return (
     <section className="flex flex-col gap-4">
       <SectionTitle title="다음 경기" />
-      <DateHeader date={MOCK_DATE} />
+      <DateHeader date={nextDateMatches[0].date} />
       <div className="flex flex-col gap-3">
-        {MOCK_MATCHES.map((match) => (
+        {nextDateMatches.map((match) => (
           <MatchCard
             key={match.id}
-            teams={match.teams}
+            teams={`${match.homeTeam} vs ${match.awayTeam}`}
             time={match.time}
             location={match.location}
           />

@@ -1,16 +1,22 @@
 import { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { MOCK_TEAMS, MOCK_TEAM_PLAYERS } from './mocks';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { ErrorMessage } from '@shared/components/ErrorMessage';
+import { useTeams } from '@features/team/hooks/useTeams';
+import { usePlayerRankingsByTeam } from './hooks/useRankings';
 
 export default function TeamDetailPage() {
   const { teamId } = useParams<{ teamId: string }>();
   const navigate = useNavigate();
 
-  const team = MOCK_TEAMS.find((t) => t.id === teamId);
-  const players = MOCK_TEAM_PLAYERS[teamId ?? ''] ?? [];
+  const { data: teams } = useTeams();
+  const { data: players, isLoading, error } = usePlayerRankingsByTeam(teamId!);
+
+  const team = teams?.find((t) => t.id === teamId);
 
   const sortedPlayers = useMemo(() => {
+    if (!players) return [];
     return [...players].sort((a, b) => {
       if (a.goals !== b.goals) return b.goals - a.goals;
       return a.name.localeCompare(b.name, 'ko');
@@ -38,53 +44,58 @@ export default function TeamDetailPage() {
           <p className="text-[13px] text-muted-foreground">골 수 기준으로 정렬됩니다.</p>
         </div>
 
-        {/* Player Rank Table */}
-        <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
-          {/* Header Row */}
-          <div className="flex h-11 items-center bg-muted">
-            <div className="flex w-11 shrink-0 items-center justify-center">
-              <span className="text-[13px] font-semibold text-muted-foreground">순위</span>
-            </div>
-            <div className="flex min-w-0 flex-1 items-center px-3">
-              <span className="text-[13px] font-semibold text-muted-foreground">이름</span>
-            </div>
-            <div className="flex w-14 shrink-0 items-center justify-center">
-              <span className="text-[13px] font-semibold text-muted-foreground">골</span>
-            </div>
-            <div className="flex w-14 shrink-0 items-center justify-center">
-              <span className="text-[13px] font-semibold text-muted-foreground">도움</span>
-            </div>
-          </div>
-
-          {/* Data Rows */}
-          {sortedPlayers.map((player, index) => (
-            <div
-              key={player.id}
-              className="flex h-11 items-center border-b border-border last:border-b-0"
-            >
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : error ? (
+          <ErrorMessage />
+        ) : (
+          <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+            {/* Header Row */}
+            <div className="flex h-11 items-center bg-muted">
               <div className="flex w-11 shrink-0 items-center justify-center">
-                <span className="text-sm font-semibold text-primary">{index + 1}</span>
+                <span className="text-[13px] font-semibold text-muted-foreground">순위</span>
               </div>
               <div className="flex min-w-0 flex-1 items-center px-3">
-                <span className="truncate text-sm font-medium text-foreground">
-                  {player.number}. {player.name}
-                </span>
+                <span className="text-[13px] font-semibold text-muted-foreground">이름</span>
               </div>
               <div className="flex w-14 shrink-0 items-center justify-center">
-                <span className="text-sm font-semibold text-primary">{player.goals}</span>
+                <span className="text-[13px] font-semibold text-muted-foreground">골</span>
               </div>
               <div className="flex w-14 shrink-0 items-center justify-center">
-                <span className="text-sm text-foreground">{player.assists}</span>
+                <span className="text-[13px] font-semibold text-muted-foreground">도움</span>
               </div>
             </div>
-          ))}
 
-          {players.length === 0 && (
-            <div className="flex h-20 items-center justify-center">
-              <span className="text-sm text-muted-foreground">등록된 선수가 없습니다.</span>
-            </div>
-          )}
-        </div>
+            {/* Data Rows */}
+            {sortedPlayers.map((player, index) => (
+              <div
+                key={player.id}
+                className="flex h-11 items-center border-b border-border last:border-b-0"
+              >
+                <div className="flex w-11 shrink-0 items-center justify-center">
+                  <span className="text-sm font-semibold text-primary">{index + 1}</span>
+                </div>
+                <div className="flex min-w-0 flex-1 items-center px-3">
+                  <span className="truncate text-sm font-medium text-foreground">
+                    {player.number}. {player.name}
+                  </span>
+                </div>
+                <div className="flex w-14 shrink-0 items-center justify-center">
+                  <span className="text-sm font-semibold text-primary">{player.goals}</span>
+                </div>
+                <div className="flex w-14 shrink-0 items-center justify-center">
+                  <span className="text-sm text-foreground">{player.assists}</span>
+                </div>
+              </div>
+            ))}
+
+            {sortedPlayers.length === 0 && (
+              <div className="flex h-20 items-center justify-center">
+                <span className="text-sm text-muted-foreground">등록된 선수가 없습니다.</span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
