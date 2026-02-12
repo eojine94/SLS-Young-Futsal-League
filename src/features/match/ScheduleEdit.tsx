@@ -10,40 +10,42 @@ import {
   SelectValue,
 } from '@shared/components/ui/select';
 import { DeleteConfirmDialog } from '@shared/components/DeleteConfirmDialog';
-import { MOCK_TEAMS } from '@features/team/mocks';
-import { MOCK_MATCHES } from './mocks';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { useTeams } from '@features/team/hooks/useTeams';
+import { useMatch, useUpdateMatch, useDeleteMatch } from './hooks/useMatches';
 
 const TIME_OPTIONS = [
-  '10:00',
-  '11:00',
-  '12:00',
-  '13:00',
-  '14:00',
-  '15:00',
-  '16:00',
-  '17:00',
-  '18:00',
-  '19:00',
-  '20:00',
+  '10:00', '11:00', '12:00', '13:00', '14:00',
+  '15:00', '16:00', '17:00', '18:00', '19:00', '20:00',
 ];
 
 export default function ScheduleEditPage() {
   const { matchId } = useParams<{ matchId: string }>();
   const navigate = useNavigate();
 
-  const match = MOCK_MATCHES.find((m) => m.id === matchId);
+  const { data: match, isLoading } = useMatch(matchId!);
+  const { data: teams } = useTeams();
+  const updateMatch = useUpdateMatch();
+  const deleteMatch = useDeleteMatch();
 
-  const [homeTeam, setHomeTeam] = useState(match?.homeTeamId ?? '');
-  const [awayTeam, setAwayTeam] = useState(match?.awayTeamId ?? '');
-  const [date, setDate] = useState(() => {
-    if (!match) return '';
-    // Convert "2025.02.22(토)" → "2025-02-22"
-    const dateStr = match.date.replace(/\(.*\)/, '').replace(/\./g, '-');
-    return dateStr;
-  });
-  const [time, setTime] = useState(match?.time ?? '');
-  const [location, setLocation] = useState(match?.location ?? '');
+  const [homeTeam, setHomeTeam] = useState('');
+  const [awayTeam, setAwayTeam] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [location, setLocation] = useState('');
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [initialized, setInitialized] = useState(false);
+
+  if (match && !initialized) {
+    setHomeTeam(match.homeTeamId);
+    setAwayTeam(match.awayTeamId);
+    setDate(match.rawDate);
+    setTime(match.time);
+    setLocation(match.location);
+    setInitialized(true);
+  }
+
+  if (isLoading) return <LoadingSpinner />;
 
   if (!match) {
     return (
@@ -53,40 +55,38 @@ export default function ScheduleEditPage() {
     );
   }
 
-  const handleSubmit = () => {
-    if (!homeTeam) {
-      toast.error('팀 A를 선택하세요.');
-      return;
+  const handleSubmit = async () => {
+    if (!homeTeam) { toast.error('팀 A를 선택하세요.'); return; }
+    if (!awayTeam) { toast.error('팀 B를 선택하세요.'); return; }
+    if (homeTeam === awayTeam) { toast.error('같은 팀을 선택할 수 없습니다.'); return; }
+    if (!date) { toast.error('날짜를 선택하세요.'); return; }
+    if (!time) { toast.error('시간을 선택하세요.'); return; }
+    if (!location.trim()) { toast.error('장소를 입력하세요.'); return; }
+
+    try {
+      await updateMatch.mutateAsync({
+        id: matchId!,
+        team_a_id: homeTeam,
+        team_b_id: awayTeam,
+        match_date: date,
+        match_time: time,
+        location: location.trim(),
+      });
+      toast.success('일정이 수정되었습니다.');
+      navigate('/match');
+    } catch {
+      toast.error('일정 수정에 실패했습니다.');
     }
-    if (!awayTeam) {
-      toast.error('팀 B를 선택하세요.');
-      return;
-    }
-    if (homeTeam === awayTeam) {
-      toast.error('같은 팀을 선택할 수 없습니다.');
-      return;
-    }
-    if (!date) {
-      toast.error('날짜를 선택하세요.');
-      return;
-    }
-    if (!time) {
-      toast.error('시간을 선택하세요.');
-      return;
-    }
-    if (!location.trim()) {
-      toast.error('장소를 입력하세요.');
-      return;
-    }
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success('일정이 수정되었습니다.');
-    navigate('/match');
   };
 
-  const handleDelete = () => {
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success('일정이 삭제되었습니다.');
-    navigate('/match');
+  const handleDelete = async () => {
+    try {
+      await deleteMatch.mutateAsync(matchId!);
+      toast.success('일정이 삭제되었습니다.');
+      navigate('/match');
+    } catch {
+      toast.error('일정 삭제에 실패했습니다.');
+    }
   };
 
   return (
@@ -119,10 +119,8 @@ export default function ScheduleEditPage() {
                 <SelectValue placeholder="팀을 선택하세요" />
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>
-                {MOCK_TEAMS.map((team) => (
-                  <SelectItem key={team.id} value={team.id}>
-                    {team.name}
-                  </SelectItem>
+                {teams?.map((team) => (
+                  <SelectItem key={team.id} value={team.id}>{team.name}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -136,10 +134,8 @@ export default function ScheduleEditPage() {
                 <SelectValue placeholder="팀을 선택하세요" />
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>
-                {MOCK_TEAMS.map((team) => (
-                  <SelectItem key={team.id} value={team.id}>
-                    {team.name}
-                  </SelectItem>
+                {teams?.map((team) => (
+                  <SelectItem key={team.id} value={team.id}>{team.name}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -165,9 +161,7 @@ export default function ScheduleEditPage() {
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>
                 {TIME_OPTIONS.map((t) => (
-                  <SelectItem key={t} value={t}>
-                    {t}
-                  </SelectItem>
+                  <SelectItem key={t} value={t}>{t}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -189,17 +183,19 @@ export default function ScheduleEditPage() {
         {/* Submit Button */}
         <button
           onClick={handleSubmit}
-          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white"
+          disabled={updateMatch.isPending}
+          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          일정 수정
+          {updateMatch.isPending ? '수정 중...' : '일정 수정'}
         </button>
 
         {/* Delete Button */}
         <button
           onClick={() => setDeleteOpen(true)}
-          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-red-500 text-sm font-semibold text-white"
+          disabled={deleteMatch.isPending}
+          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-red-500 text-sm font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          일정 삭제
+          {deleteMatch.isPending ? '삭제 중...' : '일정 삭제'}
         </button>
       </div>
 
