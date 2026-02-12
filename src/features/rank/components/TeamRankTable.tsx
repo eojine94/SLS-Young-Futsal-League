@@ -1,0 +1,68 @@
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { MOCK_TEAMS } from '../mocks';
+
+export function TeamRankTable() {
+  const navigate = useNavigate();
+
+  const sortedTeams = useMemo(() => {
+    return [...MOCK_TEAMS].sort((a, b) => {
+      if (a.wins !== b.wins) return b.wins - a.wins;
+      return a.name.localeCompare(b.name, 'ko');
+    });
+  }, []);
+
+  return (
+    <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+      {/* Header Row */}
+      <div className="flex h-11 items-center bg-muted">
+        <div className="flex w-10 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">순위</span>
+        </div>
+        <div className="flex min-w-0 flex-1 items-center px-3">
+          <span className="text-[13px] font-semibold text-muted-foreground">팀명</span>
+        </div>
+        <div className="flex w-12 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">경기</span>
+        </div>
+        <div className="flex w-12 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">승</span>
+        </div>
+        <div className="flex w-10 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">무</span>
+        </div>
+        <div className="flex w-12 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">패</span>
+        </div>
+      </div>
+
+      {/* Data Rows */}
+      {sortedTeams.map((team, index) => (
+        <button
+          key={team.id}
+          className="flex h-11 w-full cursor-pointer items-center border-b border-border transition-colors last:border-b-0 hover:bg-muted/50"
+          onClick={() => navigate(`/rank/${team.id}`)}
+        >
+          <div className="flex w-10 shrink-0 items-center justify-center">
+            <span className="text-sm font-semibold text-primary">{index + 1}</span>
+          </div>
+          <div className="flex min-w-0 flex-1 items-center px-3">
+            <span className="truncate text-sm font-medium text-foreground">{team.name}</span>
+          </div>
+          <div className="flex w-12 shrink-0 items-center justify-center">
+            <span className="text-sm text-foreground">{team.matches}</span>
+          </div>
+          <div className="flex w-12 shrink-0 items-center justify-center">
+            <span className="text-sm font-semibold text-primary">{team.wins}</span>
+          </div>
+          <div className="flex w-10 shrink-0 items-center justify-center">
+            <span className="text-sm text-foreground">{team.draws}</span>
+          </div>
+          <div className="flex w-12 shrink-0 items-center justify-center">
+            <span className="text-sm text-foreground">{team.losses}</span>
+          </div>
+        </button>
+      ))}
+    </div>
+  );
+}

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Home, Trophy, Calendar, Users } from 'lucide-react';
+import { useAuth } from '@shared/hooks/useAuth';
 
 const NAV_ITEMS = [
   { to: '/', label: '홈', icon: Home },
@@ -9,11 +10,8 @@ const NAV_ITEMS = [
 
 const ADMIN_NAV_ITEM = { to: '/team', label: '팀', icon: Users } as const;
 
-type BottomNavProps = {
-  isAdmin?: boolean;
-};
-
-export function BottomNav({ isAdmin = false }: BottomNavProps) {
+export function BottomNav() {
+  const { isAdmin } = useAuth();
   const items = isAdmin ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
 
   return (
