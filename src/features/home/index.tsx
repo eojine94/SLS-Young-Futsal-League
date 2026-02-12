@@ -1,14 +1,14 @@
-import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '@shared/components/Header';
+import { RankSection } from './components/RankSection';
+import { ScheduleSection } from './components/ScheduleSection';
 
 export default function HomePage() {
-  const navigate = useNavigate();
-
   return (
     <>
-      <PageHeader onAuthClick={() => navigate('/login')} />
-      <div className="px-5 py-6">
-        <p className="text-sm text-muted-foreground">홈 화면입니다.</p>
+      <PageHeader />
+      <div className="flex flex-col gap-8 px-5 py-6">
+        <RankSection />
+        <ScheduleSection />
       </div>
     </>
   );
