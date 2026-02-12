@@ -42,6 +42,9 @@
 
 ## 3. 디자인 가이드
 
+- **디자인 도구**: [pencil.dev](https://pencil.dev) VSCode Extension (Pencil MCP)
+- **디자인 파일**: `pencil.pen` — 모든 UI 디자인의 단일 원본(Single Source of Truth)
+- **⚠️ 필수 규칙**: UI 관련 작업 시 반드시 `pencil.pen` 파일을 Pencil MCP 도구로 참조하여 디자인을 확인한 후 코드로 구현할 것
 - **레퍼런스**: 토스(Toss) 디자인 시스템
 - **레이아웃**: 모바일 앱 스타일 고정 폭 (max-width: screenMaxWidth = 480px), PC에서는 중앙 정렬 + 그림자
 - 깔끔하고 미니멀한 UI, 넉넉한 여백, 명확한 정보 계층
@@ -557,7 +560,7 @@ players ─< player_records
 
 ### Phase 1 — 디자인
 
-- Figma 또는 v0로 전체 화면 디자인
+- pencil.dev(Pencil MCP)로 `pencil.pen` 파일에 전체 화면 디자인
 - 디자인 시스템 정의 (색상, 타이포, 컴포넌트)
 - 화면별 UI 디자인: Home, Rank, Match
 - 관리자 화면 UI 디자인: Team

@@ -66,6 +66,12 @@ npm run preview  # 빌드 결과 미리보기
 - Import: 절대경로 alias 사용 (`@features`, `@shared`, `@services`, `@mocks`)
   - 예: `import { Button } from '@shared/components/Button'`
 
+### TypeScript 타입 선언
+
+- **`type` 통일**: 객체 타입 선언 시 `interface` 대신 항상 `type`을 사용한다.
+  - 예: `type UserProps = { name: string; age: number }`
+  - `interface`는 사용하지 않는다.
+
 ### 코딩 스타일 선호도
 
 - **관심사 분리(Separation of Concerns)**: 각 모듈, 컴포넌트, 함수는 명확한 단일 책임을 가져야 함
@@ -90,9 +96,10 @@ npm run preview  # 빌드 결과 미리보기
 
 ## 디자인
 
-- **디자인 파일**: `pencil.pen` (Pencil MCP 도구로 관리)
-- **구현**: Tailwind CSS + shadcn/ui로 디자인을 코드로 구현
-- 디자인 확인/수정 시 Pencil MCP 도구 사용 (절대 경로: `/Users/ejoh/SLS-Young-Futsal-League/pencil.pen`)
+- **디자인 도구**: [pencil.dev](https://pencil.dev) VSCode Extension (Pencil MCP)
+- **디자인 파일**: `pencil.pen` — 모든 UI 디자인의 단일 원본(Single Source of Truth)
+- **구현**: Tailwind CSS + shadcn/ui로 `pencil.pen` 디자인을 코드로 구현
+- **⚠️ 필수 규칙**: UI 관련 작업(신규 화면, 컴포넌트 수정, 스타일 변경 등)을 할 때는 **반드시 `pencil.pen` 파일을 Pencil MCP 도구로 먼저 확인**한 후 작업할 것. 디자인 파일에 정의된 레이아웃, 색상, 간격, 타이포그래피 등을 그대로 코드에 반영해야 한다.
 
 ## 상세 기획
 
