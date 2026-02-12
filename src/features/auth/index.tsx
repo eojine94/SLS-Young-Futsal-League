@@ -9,6 +9,7 @@ export default function LoginPage() {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +17,9 @@ export default function LoginPage() {
       toast.error('이메일과 비밀번호를 입력하세요.');
       return;
     }
+    setIsSubmitting(true);
     const success = await login(email, password);
+    setIsSubmitting(false);
     if (success) {
       toast.success('로그인되었습니다.');
       navigate('/');
@@ -65,9 +68,10 @@ export default function LoginPage() {
           {/* 로그인 버튼 */}
           <button
             type="submit"
-            className="h-11 w-full rounded-lg bg-primary text-sm font-semibold text-primary-foreground cursor-pointer"
+            disabled={isSubmitting}
+            className="h-11 w-full rounded-lg bg-primary text-sm font-semibold text-primary-foreground cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            로그인
+            {isSubmitting ? '로그인 중...' : '로그인'}
           </button>
         </form>
       </div>

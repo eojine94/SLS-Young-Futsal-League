@@ -1,37 +1,30 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SectionTitle } from '@shared/components/SectionTitle';
-
-type TeamRank = {
-  rank: number;
-  name: string;
-  wins: number;
-};
-
-type PlayerRank = {
-  rank: number;
-  name: string;
-  team: string;
-  goals: number;
-};
-
-const MOCK_TEAM_RANKS: TeamRank[] = [
-  { rank: 1, name: 'FC Thunder', wins: 8 },
-  { rank: 2, name: 'FC Storm', wins: 7 },
-  { rank: 3, name: 'FC Lightning', wins: 5 },
-];
-
-const MOCK_PLAYER_RANKS: PlayerRank[] = [
-  { rank: 1, name: '0. 홍길동', team: 'FC Thunder', goals: 12 },
-  { rank: 2, name: '7. 김철수', team: 'FC Storm', goals: 9 },
-  { rank: 3, name: '10. 이영희', team: 'FC Lightning', goals: 7 },
-];
+import { useTeamRankings, usePlayerRankings } from '@features/rank/hooks/useRankings';
 
 type SegmentType = 'team' | 'player';
 
 export function RankSection() {
   const navigate = useNavigate();
   const [segment, setSegment] = useState<SegmentType>('team');
+
+  const { data: teamRankings } = useTeamRankings();
+  const { data: playerRankings } = usePlayerRankings();
+
+  const topTeams = useMemo(() => {
+    if (!teamRankings) return [];
+    return [...teamRankings]
+      .sort((a, b) => b.wins - a.wins || a.name.localeCompare(b.name, 'ko'))
+      .slice(0, 3);
+  }, [teamRankings]);
+
+  const topPlayers = useMemo(() => {
+    if (!playerRankings) return [];
+    return [...playerRankings]
+      .sort((a, b) => b.goals - a.goals || a.name.localeCompare(b.name, 'ko'))
+      .slice(0, 3);
+  }, [playerRankings]);
 
   return (
     <section className="flex flex-col gap-4">
@@ -68,13 +61,13 @@ export function RankSection() {
       {/* Rank List */}
       <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
         {segment === 'team'
-          ? MOCK_TEAM_RANKS.map((item) => (
+          ? topTeams.map((item, index) => (
               <div
-                key={item.rank}
+                key={item.id}
                 className="flex h-14 items-center gap-3.5 border-b border-border px-4"
               >
                 <span className="w-6 text-center text-base font-semibold text-primary">
-                  {item.rank}
+                  {index + 1}
                 </span>
                 <span className="flex-1 text-[15px] font-medium text-foreground">
                   {item.name}
@@ -82,17 +75,19 @@ export function RankSection() {
                 <span className="text-sm font-semibold text-primary">{item.wins}승</span>
               </div>
             ))
-          : MOCK_PLAYER_RANKS.map((item) => (
+          : topPlayers.map((item, index) => (
               <div
-                key={item.rank}
+                key={item.id}
                 className="flex h-14 items-center gap-3.5 border-b border-border px-4"
               >
                 <span className="w-6 text-center text-base font-semibold text-primary">
-                  {item.rank}
+                  {index + 1}
                 </span>
                 <div className="flex flex-1 flex-col gap-0.5">
-                  <span className="text-[15px] font-medium text-foreground">{item.name}</span>
-                  <span className="text-xs text-muted-foreground">{item.team}</span>
+                  <span className="text-[15px] font-medium text-foreground">
+                    {item.number}. {item.name}
+                  </span>
+                  <span className="text-xs text-muted-foreground">{item.teamName}</span>
                 </div>
                 <span className="text-sm font-semibold text-primary">{item.goals}골</span>
               </div>

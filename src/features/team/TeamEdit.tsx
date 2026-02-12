@@ -3,39 +3,62 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { toast } from 'sonner';
 import { DeleteConfirmDialog } from '@shared/components/DeleteConfirmDialog';
-import { MOCK_TEAMS } from './mocks';
-import { MOCK_PLAYERS } from './mocks';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { useTeams, useUpdateTeam, useDeleteTeam } from './hooks/useTeams';
+import { usePlayers } from './hooks/usePlayers';
 
 export default function TeamEditPage() {
   const { teamId } = useParams<{ teamId: string }>();
   const navigate = useNavigate();
 
-  const team = MOCK_TEAMS.find((t) => t.id === teamId);
-  const playersInTeam = MOCK_PLAYERS.filter((p) => p.teamId === teamId);
+  const { data: teams, isLoading: teamsLoading } = useTeams();
+  const { data: players, isLoading: playersLoading } = usePlayers(teamId!);
+  const updateTeam = useUpdateTeam();
+  const deleteTeam = useDeleteTeam();
 
-  const [name, setName] = useState(team?.name ?? '');
+  const team = teams?.find((t) => t.id === teamId);
+
+  const [name, setName] = useState('');
+  const [initialized, setInitialized] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-  const handleSave = () => {
+  // 팀 데이터 로드 후 이름 초기화
+  if (team && !initialized) {
+    setName(team.name);
+    setInitialized(true);
+  }
+
+  const handleSave = async () => {
     if (!name.trim()) {
       toast.error('팀명을 입력하세요.');
       return;
     }
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success('팀 정보가 수정되었습니다.');
-    navigate(`/team/${teamId}`);
+    try {
+      await updateTeam.mutateAsync({ id: teamId!, name: name.trim() });
+      toast.success('팀 정보가 수정되었습니다.');
+      navigate(`/team/${teamId}`);
+    } catch {
+      toast.error('팀 수정에 실패했습니다.');
+    }
   };
 
-  const handleDelete = () => {
-    if (playersInTeam.length > 0) {
+  const handleDelete = async () => {
+    if (players && players.length > 0) {
       toast.error('소속 선수가 있는 팀은 삭제할 수 없습니다.');
       setShowDeleteDialog(false);
       return;
     }
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success('팀이 삭제되었습니다.');
-    navigate('/team');
+    try {
+      await deleteTeam.mutateAsync(teamId!);
+      toast.success('팀이 삭제되었습니다.');
+      navigate('/team');
+    } catch {
+      toast.error('팀 삭제에 실패했습니다.');
+    }
+    setShowDeleteDialog(false);
   };
+
+  if (teamsLoading || playersLoading) return <LoadingSpinner />;
 
   return (
     <>
@@ -73,9 +96,10 @@ export default function TeamEditPage() {
         <div className="flex flex-col gap-3">
           <button
             onClick={handleSave}
-            className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white"
+            disabled={updateTeam.isPending}
+            className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            저장
+            {updateTeam.isPending ? '저장 중...' : '저장'}
           </button>
           <button
             onClick={() => setShowDeleteDialog(true)}

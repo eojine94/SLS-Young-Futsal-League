@@ -3,20 +3,31 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, Settings, Pencil, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { DeleteConfirmDialog } from '@shared/components/DeleteConfirmDialog';
-import { MOCK_TEAMS, MOCK_PLAYERS } from './mocks';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { ErrorMessage } from '@shared/components/ErrorMessage';
+import { useTeams } from './hooks/useTeams';
+import { usePlayers, useDeletePlayer } from './hooks/usePlayers';
 
 export default function PlayerManagePage() {
   const { teamId } = useParams<{ teamId: string }>();
   const navigate = useNavigate();
 
-  const team = MOCK_TEAMS.find((t) => t.id === teamId);
-  const players = MOCK_PLAYERS.filter((p) => p.teamId === teamId);
+  const { data: teams } = useTeams();
+  const { data: players, isLoading, error } = usePlayers(teamId!);
+  const deletePlayer = useDeletePlayer();
+
+  const team = teams?.find((t) => t.id === teamId);
 
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
 
-  const handleDeleteConfirm = () => {
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success('선수가 삭제되었습니다.');
+  const handleDeleteConfirm = async () => {
+    if (!deleteTargetId) return;
+    try {
+      await deletePlayer.mutateAsync(deleteTargetId);
+      toast.success('선수가 삭제되었습니다.');
+    } catch {
+      toast.error('선수 삭제에 실패했습니다.');
+    }
     setDeleteTargetId(null);
   };
 
@@ -55,48 +66,54 @@ export default function PlayerManagePage() {
         </div>
 
         {/* Player List */}
-        <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
-          {players.length === 0 ? (
-            <div className="flex h-20 items-center justify-center">
-              <span className="text-sm text-muted-foreground">등록된 선수가 없습니다.</span>
-            </div>
-          ) : (
-            players.map((player) => (
-              <div
-                key={player.id}
-                className="flex h-14 items-center justify-between border-b border-border px-4 last:border-b-0"
-              >
-                {/* Left: Name + Badge */}
-                <div className="flex items-center gap-2.5">
-                  <span className="text-[15px] font-medium text-foreground">
-                    {player.number}. {player.name}
-                  </span>
-                  {player.role === 'leader' && (
-                    <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
-                      팀장
-                    </span>
-                  )}
-                </div>
-
-                {/* Right: Actions */}
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => navigate(`/team/${teamId}/players/${player.id}/edit`)}
-                    className="cursor-pointer p-0.5 text-muted-foreground/60"
-                  >
-                    <Pencil className="size-[18px]" />
-                  </button>
-                  <button
-                    onClick={() => setDeleteTargetId(player.id)}
-                    className="cursor-pointer p-0.5 text-muted-foreground/60"
-                  >
-                    <Trash2 className="size-[18px]" />
-                  </button>
-                </div>
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : error ? (
+          <ErrorMessage />
+        ) : (
+          <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+            {players?.length === 0 ? (
+              <div className="flex h-20 items-center justify-center">
+                <span className="text-sm text-muted-foreground">등록된 선수가 없습니다.</span>
               </div>
-            ))
-          )}
-        </div>
+            ) : (
+              players?.map((player) => (
+                <div
+                  key={player.id}
+                  className="flex h-14 items-center justify-between border-b border-border px-4 last:border-b-0"
+                >
+                  {/* Left: Name + Badge */}
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-[15px] font-medium text-foreground">
+                      {player.number}. {player.name}
+                    </span>
+                    {player.role === 'leader' && (
+                      <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
+                        팀장
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Right: Actions */}
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => navigate(`/team/${teamId}/players/${player.id}/edit`)}
+                      className="cursor-pointer p-0.5 text-muted-foreground/60"
+                    >
+                      <Pencil className="size-[18px]" />
+                    </button>
+                    <button
+                      onClick={() => setDeleteTargetId(player.id)}
+                      className="cursor-pointer p-0.5 text-muted-foreground/60"
+                    >
+                      <Trash2 className="size-[18px]" />
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        )}
       </div>
 
       {/* Delete Dialog */}

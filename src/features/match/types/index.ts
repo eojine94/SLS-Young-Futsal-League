@@ -5,6 +5,7 @@ export type Match = {
   homeTeam: string;
   awayTeam: string;
   date: string;
+  rawDate: string;
   time: string;
   location: string;
   homeScore?: number;

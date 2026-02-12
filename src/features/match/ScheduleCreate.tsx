@@ -9,24 +9,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@shared/components/ui/select';
-import { MOCK_TEAMS } from '@features/team/mocks';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { useTeams } from '@features/team/hooks/useTeams';
+import { useCreateMatch } from './hooks/useMatches';
 
 const TIME_OPTIONS = [
-  '10:00',
-  '11:00',
-  '12:00',
-  '13:00',
-  '14:00',
-  '15:00',
-  '16:00',
-  '17:00',
-  '18:00',
-  '19:00',
-  '20:00',
+  '10:00', '11:00', '12:00', '13:00', '14:00',
+  '15:00', '16:00', '17:00', '18:00', '19:00', '20:00',
 ];
 
 export default function ScheduleCreatePage() {
   const navigate = useNavigate();
+  const { data: teams, isLoading } = useTeams();
+  const createMatch = useCreateMatch();
 
   const [homeTeam, setHomeTeam] = useState('');
   const [awayTeam, setAwayTeam] = useState('');
@@ -34,35 +29,30 @@ export default function ScheduleCreatePage() {
   const [time, setTime] = useState('');
   const [location, setLocation] = useState('');
 
-  const handleSubmit = () => {
-    if (!homeTeam) {
-      toast.error('팀 A를 선택하세요.');
-      return;
+  const handleSubmit = async () => {
+    if (!homeTeam) { toast.error('팀 A를 선택하세요.'); return; }
+    if (!awayTeam) { toast.error('팀 B를 선택하세요.'); return; }
+    if (homeTeam === awayTeam) { toast.error('같은 팀을 선택할 수 없습니다.'); return; }
+    if (!date) { toast.error('날짜를 선택하세요.'); return; }
+    if (!time) { toast.error('시간을 선택하세요.'); return; }
+    if (!location.trim()) { toast.error('장소를 입력하세요.'); return; }
+
+    try {
+      await createMatch.mutateAsync({
+        team_a_id: homeTeam,
+        team_b_id: awayTeam,
+        match_date: date,
+        match_time: time,
+        location: location.trim(),
+      });
+      toast.success('일정이 등록되었습니다.');
+      navigate('/match');
+    } catch {
+      toast.error('일정 등록에 실패했습니다.');
     }
-    if (!awayTeam) {
-      toast.error('팀 B를 선택하세요.');
-      return;
-    }
-    if (homeTeam === awayTeam) {
-      toast.error('같은 팀을 선택할 수 없습니다.');
-      return;
-    }
-    if (!date) {
-      toast.error('날짜를 선택하세요.');
-      return;
-    }
-    if (!time) {
-      toast.error('시간을 선택하세요.');
-      return;
-    }
-    if (!location.trim()) {
-      toast.error('장소를 입력하세요.');
-      return;
-    }
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success('일정이 등록되었습니다.');
-    navigate('/match');
   };
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <>
@@ -76,7 +66,6 @@ export default function ScheduleCreatePage() {
 
       {/* Content */}
       <div className="flex flex-col gap-6 px-5 py-6">
-        {/* Guide Text */}
         <div className="flex flex-col gap-1 pb-2">
           <h2 className="text-base font-semibold text-foreground">새 경기 일정 등록</h2>
           <p className="text-[13px] text-muted-foreground">
@@ -84,7 +73,6 @@ export default function ScheduleCreatePage() {
           </p>
         </div>
 
-        {/* Form */}
         <div className="flex flex-col gap-5">
           {/* 팀 A */}
           <div className="flex flex-col gap-2">
@@ -94,10 +82,8 @@ export default function ScheduleCreatePage() {
                 <SelectValue placeholder="팀을 선택하세요" />
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>
-                {MOCK_TEAMS.map((team) => (
-                  <SelectItem key={team.id} value={team.id}>
-                    {team.name}
-                  </SelectItem>
+                {teams?.map((team) => (
+                  <SelectItem key={team.id} value={team.id}>{team.name}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -111,10 +97,8 @@ export default function ScheduleCreatePage() {
                 <SelectValue placeholder="팀을 선택하세요" />
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>
-                {MOCK_TEAMS.map((team) => (
-                  <SelectItem key={team.id} value={team.id}>
-                    {team.name}
-                  </SelectItem>
+                {teams?.map((team) => (
+                  <SelectItem key={team.id} value={team.id}>{team.name}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -140,9 +124,7 @@ export default function ScheduleCreatePage() {
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>
                 {TIME_OPTIONS.map((t) => (
-                  <SelectItem key={t} value={t}>
-                    {t}
-                  </SelectItem>
+                  <SelectItem key={t} value={t}>{t}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -161,12 +143,12 @@ export default function ScheduleCreatePage() {
           </div>
         </div>
 
-        {/* Submit Button */}
         <button
           onClick={handleSubmit}
-          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white"
+          disabled={createMatch.isPending}
+          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          일정 등록
+          {createMatch.isPending ? '등록 중...' : '일정 등록'}
         </button>
       </div>
     </>

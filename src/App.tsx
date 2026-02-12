@@ -18,7 +18,14 @@ import ResultCreatePage from '@features/match/ResultCreate';
 import LoginPage from '@features/auth/index';
 import { AuthProvider } from '@shared/hooks/useAuth';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60_000,
+      retry: 1,
+    },
+  },
+});
 
 export default function App() {
   return (

@@ -1,16 +1,23 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MOCK_TEAMS } from '../mocks';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { ErrorMessage } from '@shared/components/ErrorMessage';
+import { useTeamRankings } from '../hooks/useRankings';
 
 export function TeamRankTable() {
   const navigate = useNavigate();
+  const { data: teams, isLoading, error } = useTeamRankings();
 
   const sortedTeams = useMemo(() => {
-    return [...MOCK_TEAMS].sort((a, b) => {
+    if (!teams) return [];
+    return [...teams].sort((a, b) => {
       if (a.wins !== b.wins) return b.wins - a.wins;
       return a.name.localeCompare(b.name, 'ko');
     });
-  }, []);
+  }, [teams]);
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage />;
 
   return (
     <div className="overflow-hidden rounded-xl border-[1.5px] border-border">

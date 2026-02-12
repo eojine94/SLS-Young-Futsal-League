@@ -11,6 +11,8 @@ export type PlayerRank = {
   id: string;
   name: string;
   number: number;
+  teamId: string;
+  teamName: string;
   goals: number;
   assists: number;
 };

@@ -1,9 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, X, TriangleAlert } from 'lucide-react';
 import { toast } from 'sonner';
-import { MOCK_PLAYERS } from '@features/team/mocks';
-import { MOCK_MATCHES } from './mocks';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { usePlayers } from '@features/team/hooks/usePlayers';
+import { useMatch, useMatchRecords, useSubmitResult } from './hooks/useMatches';
 import { PlayerSelectSheet } from './components/PlayerSelectSheet';
 import type { PlayerRecord } from './types';
 
@@ -11,29 +12,60 @@ export default function ResultCreatePage() {
   const { matchId } = useParams<{ matchId: string }>();
   const navigate = useNavigate();
 
-  const match = MOCK_MATCHES.find((m) => m.id === matchId);
+  const { data: match, isLoading: matchLoading } = useMatch(matchId!);
+  const { data: existingRecords } = useMatchRecords(matchId!);
+  const submitResult = useSubmitResult();
+
+  const { data: homePlayers } = usePlayers(match?.homeTeamId ?? '');
+  const { data: awayPlayers } = usePlayers(match?.awayTeamId ?? '');
+
   const isEdit = match?.hasResult ?? false;
 
-  const [homeScore, setHomeScore] = useState(() =>
-    match?.homeScore !== undefined ? String(match.homeScore) : '0',
-  );
-  const [awayScore, setAwayScore] = useState(() =>
-    match?.awayScore !== undefined ? String(match.awayScore) : '0',
-  );
+  const [homeScore, setHomeScore] = useState('0');
+  const [awayScore, setAwayScore] = useState('0');
   const [homeRecords, setHomeRecords] = useState<PlayerRecord[]>([]);
   const [awayRecords, setAwayRecords] = useState<PlayerRecord[]>([]);
+  const [initialized, setInitialized] = useState(false);
 
   const [sheetSide, setSheetSide] = useState<'home' | 'away' | null>(null);
 
-  const homePlayers = useMemo(
-    () => (match ? MOCK_PLAYERS.filter((p) => p.teamId === match.homeTeamId) : []),
-    [match],
-  );
+  useEffect(() => {
+    if (!match || initialized) return;
 
-  const awayPlayers = useMemo(
-    () => (match ? MOCK_PLAYERS.filter((p) => p.teamId === match.awayTeamId) : []),
-    [match],
-  );
+    // For edit mode, wait until records are loaded too
+    if (match.hasResult && !existingRecords) return;
+
+    if (match.homeScore !== undefined) setHomeScore(String(match.homeScore));
+    if (match.awayScore !== undefined) setAwayScore(String(match.awayScore));
+
+    if (existingRecords && existingRecords.length > 0) {
+      const homeRecs: PlayerRecord[] = [];
+      const awayRecs: PlayerRecord[] = [];
+
+      for (const rec of existingRecords) {
+        const player = rec.player as unknown as { name: string; number: number; team_id: string };
+        const record: PlayerRecord = {
+          playerId: rec.player_id,
+          playerName: player.name,
+          playerNumber: player.number,
+          goals: rec.goals,
+          assists: rec.assists,
+        };
+        if (player.team_id === match.homeTeamId) {
+          homeRecs.push(record);
+        } else {
+          awayRecs.push(record);
+        }
+      }
+
+      setHomeRecords(homeRecs);
+      setAwayRecords(awayRecs);
+    }
+
+    setInitialized(true);
+  }, [match, existingRecords, initialized]);
+
+  if (matchLoading) return <LoadingSpinner />;
 
   if (!match) {
     return (
@@ -56,11 +88,11 @@ export default function ResultCreatePage() {
     const setter = sheetSide === 'home' ? setHomeRecords : setAwayRecords;
 
     const newRecords: PlayerRecord[] = selections.map((s) => {
-      const player = players.find((p) => p.id === s.playerId)!;
+      const player = players?.find((p) => p.id === s.playerId);
       return {
-        playerId: player.id,
-        playerName: player.name,
-        playerNumber: player.number,
+        playerId: s.playerId,
+        playerName: player?.name ?? '',
+        playerNumber: player?.number ?? 0,
         goals: s.goals,
         assists: s.assists,
       };
@@ -70,14 +102,30 @@ export default function ResultCreatePage() {
     setSheetSide(null);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (homeScore === '' || awayScore === '') {
       toast.error('스코어를 입력하세요.');
       return;
     }
-    // TODO: Phase 4에서 Supabase 연동
-    toast.success(isEdit ? '결과가 수정되었습니다.' : '결과가 등록되었습니다.');
-    navigate('/match');
+
+    try {
+      const allRecords = [
+        ...homeRecords.map((r) => ({ player_id: r.playerId, goals: r.goals, assists: r.assists })),
+        ...awayRecords.map((r) => ({ player_id: r.playerId, goals: r.goals, assists: r.assists })),
+      ];
+
+      await submitResult.mutateAsync({
+        matchId: matchId!,
+        teamAScore: Number(homeScore),
+        teamBScore: Number(awayScore),
+        records: allRecords,
+      });
+
+      toast.success(isEdit ? '결과가 수정되었습니다.' : '결과가 등록되었습니다.');
+      navigate('/match');
+    } catch {
+      toast.error('결과 등록에 실패했습니다.');
+    }
   };
 
   const existingRecordPlayerIds = (side: 'home' | 'away') => {
@@ -154,7 +202,7 @@ export default function ResultCreatePage() {
           teamName={match.homeTeam}
           records={homeRecords}
           hasAvailablePlayers={
-            homePlayers.filter((p) => !homeRecords.some((r) => r.playerId === p.id)).length > 0
+            (homePlayers?.filter((p) => !homeRecords.some((r) => r.playerId === p.id)).length ?? 0) > 0
           }
           onOpenSheet={() => setSheetSide('home')}
           onRemoveRecord={(playerId) => removeRecord('home', playerId)}
@@ -165,7 +213,7 @@ export default function ResultCreatePage() {
           teamName={match.awayTeam}
           records={awayRecords}
           hasAvailablePlayers={
-            awayPlayers.filter((p) => !awayRecords.some((r) => r.playerId === p.id)).length > 0
+            (awayPlayers?.filter((p) => !awayRecords.some((r) => r.playerId === p.id)).length ?? 0) > 0
           }
           onOpenSheet={() => setSheetSide('away')}
           onRemoveRecord={(playerId) => removeRecord('away', playerId)}
@@ -193,9 +241,12 @@ export default function ResultCreatePage() {
         {/* Submit Button */}
         <button
           onClick={handleSubmit}
-          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white"
+          disabled={submitResult.isPending}
+          className="flex h-11 cursor-pointer items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isEdit ? '결과 수정' : '결과 등록'}
+          {submitResult.isPending
+            ? (isEdit ? '수정 중...' : '등록 중...')
+            : (isEdit ? '결과 수정' : '결과 등록')}
         </button>
       </div>
 
@@ -203,7 +254,7 @@ export default function ResultCreatePage() {
       <PlayerSelectSheet
         open={sheetSide !== null}
         teamName={sheetSide === 'home' ? match.homeTeam : match.awayTeam}
-        players={sheetSide === 'home' ? homePlayers : awayPlayers}
+        players={sheetSide === 'home' ? (homePlayers ?? []) : (awayPlayers ?? [])}
         existingRecordPlayerIds={existingRecordPlayerIds(sheetSide ?? 'home')}
         onClose={() => setSheetSide(null)}
         onConfirm={handleSheetConfirm}

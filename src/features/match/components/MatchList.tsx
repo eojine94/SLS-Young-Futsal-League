@@ -2,13 +2,15 @@ import { useMemo, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DateHeader } from '@shared/components/DateHeader';
 import { MatchCard } from '@shared/components/MatchCard';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { ErrorMessage } from '@shared/components/ErrorMessage';
 import type { Match, MatchGroup } from '../types';
-import { MOCK_MATCHES, groupMatchesByDate } from '../mocks';
-
-const PAST_DATES = new Set(['2025.01.25(토)', '2025.02.01(토)', '2025.02.08(토)']);
+import { useMatches } from '../hooks/useMatches';
+import { groupMatchesByDate } from '../utils';
+import { isDatePast } from '@shared/utils/dateFormat';
 
 function isPastMatch(match: Match): boolean {
-  return PAST_DATES.has(match.date);
+  return isDatePast(match.rawDate);
 }
 
 function formatScore(match: Match): string | undefined {
@@ -32,14 +34,16 @@ function getOnClick(
 ): (() => void) | undefined {
   if (!isAdmin) return undefined;
 
-  if (isPastMatch(match)) {
+  if (match.hasResult || isPastMatch(match)) {
     return () => navigate(`/match/${match.id}/result`);
   }
   return () => navigate(`/match/${match.id}/schedule/edit`);
 }
 
 function findFirstFutureDateIndex(groups: MatchGroup[]): number {
-  return groups.findIndex((group) => !PAST_DATES.has(group.date));
+  return groups.findIndex((group) =>
+    group.matches.some((match) => !isPastMatch(match)),
+  );
 }
 
 type MatchListProps = {
@@ -49,10 +53,11 @@ type MatchListProps = {
 export function MatchList({ isAdmin }: MatchListProps) {
   const navigate = useNavigate();
   const futureRef = useRef<HTMLDivElement>(null);
+  const { data: matches, isLoading, error } = useMatches();
 
   const matchGroups: MatchGroup[] = useMemo(
-    () => groupMatchesByDate(MOCK_MATCHES),
-    [],
+    () => (matches ? groupMatchesByDate(matches) : []),
+    [matches],
   );
 
   const firstFutureIndex = useMemo(
@@ -64,7 +69,10 @@ export function MatchList({ isAdmin }: MatchListProps) {
     if (futureRef.current) {
       futureRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }, []);
+  }, [matchGroups]);
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage />;
 
   return (
     <div className="flex flex-col gap-7">
