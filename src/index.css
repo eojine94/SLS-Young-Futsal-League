@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -48,53 +48,45 @@
 :root {
   --radius: 0.625rem;
   /* pencil.pen 디자인 토큰 기반 (DR-001) */
-  --background: #F4F4F5;        /* bg-muted */
-  --foreground: #18181B;        /* text-primary */
-  --card: #FFFFFF;              /* bg-primary */
-  --card-foreground: #18181B;   /* text-primary */
-  --popover: #FFFFFF;           /* bg-primary */
-  --popover-foreground: #18181B;/* text-primary */
-  --primary: #2563EB;           /* accent-primary */
-  --primary-foreground: #FFFFFF;/* text-on-accent */
-  --secondary: #F4F4F5;         /* bg-muted */
-  --secondary-foreground: #18181B;/* text-primary */
-  --muted: #F4F4F5;             /* bg-muted */
-  --muted-foreground: #71717A;  /* text-secondary */
-  --accent: #EFF6FF;            /* bg-highlight / accent-light */
-  --accent-foreground: #2563EB; /* accent-primary */
-  --destructive: #EF4444;       /* status-error */
-  --border: #E4E4E7;            /* border-default */
-  --input: #E4E4E7;             /* border-default */
-  --ring: #2563EB;              /* accent-primary */
-  --chart-1: #2563EB;
-  --chart-2: #22C55E;
-  --chart-3: #F59E0B;
-  --chart-4: #EF4444;
-  --chart-5: #71717A;
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #18181B;
-  --sidebar-primary: #2563EB;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #EFF6FF;
-  --sidebar-accent-foreground: #2563EB;
-  --sidebar-border: #E4E4E7;
-  --sidebar-ring: #2563EB;
+  --background: #f4f4f5; /* bg-muted */
+  --foreground: #18181b; /* text-primary */
+  --card: #ffffff; /* bg-primary */
+  --card-foreground: #18181b; /* text-primary */
+  --popover: #ffffff; /* bg-primary */
+  --popover-foreground: #18181b; /* text-primary */
+  --primary: #2563eb; /* accent-primary */
+  --primary-foreground: #ffffff; /* text-on-accent */
+  --secondary: #f4f4f5; /* bg-muted */
+  --secondary-foreground: #18181b; /* text-primary */
+  --muted: #f4f4f5; /* bg-muted */
+  --muted-foreground: #71717a; /* text-secondary */
+  --accent: #eff6ff; /* bg-highlight / accent-light */
+  --accent-foreground: #2563eb; /* accent-primary */
+  --destructive: #ef4444; /* status-error */
+  --border: #e4e4e7; /* border-default */
+  --input: #e4e4e7; /* border-default */
+  --ring: #2563eb; /* accent-primary */
+  --chart-1: #2563eb;
+  --chart-2: #22c55e;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #71717a;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #18181b;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eff6ff;
+  --sidebar-accent-foreground: #2563eb;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #2563eb;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  html, body {
-    @apply text-foreground;
-    background: linear-gradient(
-      to right,
-      var(--background) 0%,
-      var(--background) calc(50% - 240px),
-      white calc(50% - 240px),
-      white calc(50% + 240px),
-      var(--background) calc(50% + 240px),
-      var(--background) 100%
-    );
+  html,
+  body {
+    @apply bg-background text-foreground overscroll-none;
   }
 }
