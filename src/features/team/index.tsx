@@ -1,4 +1,4 @@
-import { PageHeader } from '@shared/components/Header'
+import { PageHeader } from '@shared/components/Header';
 
 export default function TeamPage() {
   return (
@@ -8,5 +8,5 @@ export default function TeamPage() {
         <p className="text-sm text-muted-foreground">팀 관리 화면입니다.</p>
       </div>
     </>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom'
-import { PageHeader } from '@shared/components/Header'
+import { useNavigate } from 'react-router-dom';
+import { PageHeader } from '@shared/components/Header';
 
 export default function MatchPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -11,5 +11,5 @@ export default function MatchPage() {
         <p className="text-sm text-muted-foreground">경기 화면입니다.</p>
       </div>
     </>
-  )
+  );
 }

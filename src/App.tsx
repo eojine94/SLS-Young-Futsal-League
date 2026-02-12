@@ -1,14 +1,14 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Toaster } from 'sonner'
-import { Layout } from '@shared/components/Layout'
-import HomePage from '@features/home/index'
-import RankPage from '@features/rank/index'
-import MatchPage from '@features/match/index'
-import TeamPage from '@features/team/index'
-import LoginPage from '@features/auth/index'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'sonner';
+import { Layout } from '@shared/components/Layout';
+import HomePage from '@features/home/index';
+import RankPage from '@features/rank/index';
+import MatchPage from '@features/match/index';
+import TeamPage from '@features/team/index';
+import LoginPage from '@features/auth/index';
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
@@ -26,5 +26,5 @@ export default function App() {
         <Toaster position="top-center" richColors />
       </BrowserRouter>
     </QueryClientProvider>
-  )
+  );
 }
