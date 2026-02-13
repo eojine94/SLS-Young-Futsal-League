@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, X, TriangleAlert } from 'lucide-react';
 import { toast } from 'sonner';
@@ -6,66 +6,44 @@ import { LoadingSpinner } from '@shared/components/LoadingSpinner';
 import { usePlayers } from '@features/team/hooks/usePlayers';
 import { useMatch, useMatchRecords, useSubmitResult } from './hooks/useMatches';
 import { PlayerSelectSheet } from './components/PlayerSelectSheet';
-import type { PlayerRecord } from './types';
+import type { Match, PlayerRecord } from './types';
+
+function parseExistingRecords(
+  records: { player_id: string; goals: number; assists: number; player: unknown }[],
+  homeTeamId: string,
+) {
+  const homeRecs: PlayerRecord[] = [];
+  const awayRecs: PlayerRecord[] = [];
+
+  for (const rec of records) {
+    const player = rec.player as { name: string; number: number; team_id: string };
+    const record: PlayerRecord = {
+      playerId: rec.player_id,
+      playerName: player.name,
+      playerNumber: player.number,
+      goals: rec.goals,
+      assists: rec.assists,
+    };
+    if (player.team_id === homeTeamId) {
+      homeRecs.push(record);
+    } else {
+      awayRecs.push(record);
+    }
+  }
+
+  return { homeRecs, awayRecs };
+}
 
 export default function ResultCreatePage() {
   const { matchId } = useParams<{ matchId: string }>();
-  const navigate = useNavigate();
-
   const { data: match, isLoading: matchLoading } = useMatch(matchId!);
-  const { data: existingRecords } = useMatchRecords(matchId!);
-  const submitResult = useSubmitResult();
+  const { data: existingRecords, isLoading: recordsLoading } = useMatchRecords(matchId!);
 
-  const { data: homePlayers } = usePlayers(match?.homeTeamId ?? '');
-  const { data: awayPlayers } = usePlayers(match?.awayTeamId ?? '');
-
+  // In edit mode, wait for both match and records before rendering the form
   const isEdit = match?.hasResult ?? false;
+  const isLoading = matchLoading || (isEdit && recordsLoading);
 
-  const [homeScore, setHomeScore] = useState('0');
-  const [awayScore, setAwayScore] = useState('0');
-  const [homeRecords, setHomeRecords] = useState<PlayerRecord[]>([]);
-  const [awayRecords, setAwayRecords] = useState<PlayerRecord[]>([]);
-  const [initialized, setInitialized] = useState(false);
-
-  const [sheetSide, setSheetSide] = useState<'home' | 'away' | null>(null);
-
-  useEffect(() => {
-    if (!match || initialized) return;
-
-    // For edit mode, wait until records are loaded too
-    if (match.hasResult && !existingRecords) return;
-
-    if (match.homeScore !== undefined) setHomeScore(String(match.homeScore));
-    if (match.awayScore !== undefined) setAwayScore(String(match.awayScore));
-
-    if (existingRecords && existingRecords.length > 0) {
-      const homeRecs: PlayerRecord[] = [];
-      const awayRecs: PlayerRecord[] = [];
-
-      for (const rec of existingRecords) {
-        const player = rec.player as unknown as { name: string; number: number; team_id: string };
-        const record: PlayerRecord = {
-          playerId: rec.player_id,
-          playerName: player.name,
-          playerNumber: player.number,
-          goals: rec.goals,
-          assists: rec.assists,
-        };
-        if (player.team_id === match.homeTeamId) {
-          homeRecs.push(record);
-        } else {
-          awayRecs.push(record);
-        }
-      }
-
-      setHomeRecords(homeRecs);
-      setAwayRecords(awayRecs);
-    }
-
-    setInitialized(true);
-  }, [match, existingRecords, initialized]);
-
-  if (matchLoading) return <LoadingSpinner />;
+  if (isLoading) return <LoadingSpinner />;
 
   if (!match) {
     return (
@@ -74,6 +52,43 @@ export default function ResultCreatePage() {
       </div>
     );
   }
+
+  return <ResultForm match={match} existingRecords={existingRecords} matchId={matchId!} />;
+}
+
+type ResultFormProps = {
+  match: Match;
+  existingRecords?: { player_id: string; goals: number; assists: number; player: unknown }[];
+  matchId: string;
+};
+
+function ResultForm({ match, existingRecords, matchId }: ResultFormProps) {
+  const navigate = useNavigate();
+  const submitResult = useSubmitResult();
+
+  const { data: homePlayers } = usePlayers(match.homeTeamId);
+  const { data: awayPlayers } = usePlayers(match.awayTeamId);
+
+  const isEdit = match.hasResult;
+
+  const initialRecords = useMemo(
+    () =>
+      existingRecords && existingRecords.length > 0
+        ? parseExistingRecords(existingRecords, match.homeTeamId)
+        : { homeRecs: [], awayRecs: [] },
+    [existingRecords, match.homeTeamId],
+  );
+
+  const [homeScore, setHomeScore] = useState(
+    match.homeScore !== undefined ? String(match.homeScore) : '0',
+  );
+  const [awayScore, setAwayScore] = useState(
+    match.awayScore !== undefined ? String(match.awayScore) : '0',
+  );
+  const [homeRecords, setHomeRecords] = useState<PlayerRecord[]>(initialRecords.homeRecs);
+  const [awayRecords, setAwayRecords] = useState<PlayerRecord[]>(initialRecords.awayRecs);
+
+  const [sheetSide, setSheetSide] = useState<'home' | 'away' | null>(null);
 
   const removeRecord = (side: 'home' | 'away', playerId: string) => {
     const setter = side === 'home' ? setHomeRecords : setAwayRecords;
