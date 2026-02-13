@@ -42,7 +42,6 @@ src/
 │   ├── utils/             # 유틸 함수
 │   └── styles/            # 글로벌 스타일, 상수 (screenMaxWidth 등)
 ├── services/              # API 호출 (Supabase)
-├── mocks/                 # Mock 데이터
 ├── App.tsx
 └── main.tsx
 ```
@@ -64,7 +63,7 @@ npm run preview  # 빌드 결과 미리보기
 - 파일명: 컴포넌트는 PascalCase, 나머지는 camelCase
 - 스타일: Tailwind CSS 클래스 사용, 인라인 스타일 지양
 - **Tailwind `[...]` 임의값 금지**: 표준 유틸리티가 있으면 반드시 사용. CSS 변수는 TW4 bare value 문법 `h-(--var)` 사용, boolean data attr은 `data-disabled:` shorthand 사용. `calc()`/`env()`/`dvh` 등 대체 불가한 경우만 예외 허용.
-- Import: 절대경로 alias 사용 (`@features`, `@shared`, `@services`, `@mocks`)
+- Import: 절대경로 alias 사용 (`@features`, `@shared`, `@services`)
   - 예: `import { Button } from '@shared/components/Button'`
 
 ### TypeScript 타입 선언
@@ -97,14 +96,12 @@ npm run preview  # 빌드 결과 미리보기
 
 ### 관리자 모드 진입 방법
 
-현재 Phase 3(Mock 데이터)이므로 별도 인증 없이 로그인 폼만 제출하면 관리자 모드가 활성화된다.
+Supabase Auth 이메일/비밀번호 인증을 사용한다.
 
 1. 아무 화면 우측 상단의 **열쇠(🔑) 아이콘** 클릭 → 로그인 페이지로 이동
-2. 이메일·비밀번호에 **아무 값이나 입력** 후 "로그인" 클릭
+2. 등록된 관리자 이메일·비밀번호 입력 후 "로그인" 클릭
 3. 관리자 모드 활성화 — 하단 네비게이션에 "팀" 탭 추가, 경기 화면에 "경기 등록" 버튼 표시, 경기 카드 클릭 시 일정 수정/결과 등록 가능
 4. 로그아웃: 우측 상단 **로그아웃 아이콘** 클릭 → 일반 사용자 모드로 복귀
-
-> Phase 4에서 Supabase Auth로 전환 시 실제 인증으로 교체 예정 (`src/shared/hooks/useAuth.tsx`)
 
 ## 디자인
 
@@ -116,3 +113,7 @@ npm run preview  # 빌드 결과 미리보기
 ## 상세 기획
 
 👉 [docs/PRD.md](./docs/PRD.md) 참고
+
+## 개발 진행 상황
+
+👉 [docs/PROGRESS.md](./docs/PROGRESS.md) 참고
