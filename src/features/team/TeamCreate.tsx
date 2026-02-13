@@ -38,20 +38,20 @@ export default function TeamCreatePage() {
         {/* Guide Text */}
         <div className="flex flex-col gap-1 pb-2">
           <h2 className="text-base font-semibold text-foreground">새 팀 등록</h2>
-          <p className="text-[13px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             팀명을 입력하여 새로운 팀을 등록하세요.
           </p>
         </div>
 
         {/* Input */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[13px] font-medium text-foreground">팀명</label>
+          <label className="text-xs font-medium text-foreground">팀명</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="팀명을 입력하세요"
-            className="h-12 rounded-xl border-[1.5px] border-border px-4 text-[15px] text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
+            className="h-12 rounded-xl border border-border px-4 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
           />
         </div>
 

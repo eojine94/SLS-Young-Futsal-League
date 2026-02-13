@@ -6,25 +6,25 @@ import { useTeamRankings } from '../hooks/useRankings';
 
 function TeamRankTableSkeleton() {
   return (
-    <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+    <div className="overflow-hidden rounded-xl border border-border">
       <div className="flex h-11 items-center bg-muted">
         <div className="flex w-10 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">순위</span>
+          <span className="text-xs font-semibold text-muted-foreground">순위</span>
         </div>
         <div className="flex min-w-0 flex-1 items-center px-3">
-          <span className="text-[13px] font-semibold text-muted-foreground">팀명</span>
+          <span className="text-xs font-semibold text-muted-foreground">팀명</span>
         </div>
         <div className="flex w-12 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">경기</span>
+          <span className="text-xs font-semibold text-muted-foreground">경기</span>
         </div>
         <div className="flex w-12 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">승</span>
+          <span className="text-xs font-semibold text-muted-foreground">승</span>
         </div>
         <div className="flex w-10 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">무</span>
+          <span className="text-xs font-semibold text-muted-foreground">무</span>
         </div>
         <div className="flex w-12 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">패</span>
+          <span className="text-xs font-semibold text-muted-foreground">패</span>
         </div>
       </div>
       {Array.from({ length: 5 }).map((_, i) => (
@@ -72,26 +72,26 @@ export function TeamRankTable() {
   if (error) return <ErrorMessage />;
 
   return (
-    <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+    <div className="overflow-hidden rounded-xl border border-border">
       {/* Header Row */}
       <div className="flex h-11 items-center bg-muted">
         <div className="flex w-10 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">순위</span>
+          <span className="text-xs font-semibold text-muted-foreground">순위</span>
         </div>
         <div className="flex min-w-0 flex-1 items-center px-3">
-          <span className="text-[13px] font-semibold text-muted-foreground">팀명</span>
+          <span className="text-xs font-semibold text-muted-foreground">팀명</span>
         </div>
         <div className="flex w-12 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">경기</span>
+          <span className="text-xs font-semibold text-muted-foreground">경기</span>
         </div>
         <div className="flex w-12 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">승</span>
+          <span className="text-xs font-semibold text-muted-foreground">승</span>
         </div>
         <div className="flex w-10 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">무</span>
+          <span className="text-xs font-semibold text-muted-foreground">무</span>
         </div>
         <div className="flex w-12 shrink-0 items-center justify-center">
-          <span className="text-[13px] font-semibold text-muted-foreground">패</span>
+          <span className="text-xs font-semibold text-muted-foreground">패</span>
         </div>
       </div>
 

@@ -68,7 +68,7 @@ export default function ScheduleCreatePage() {
       <div className="flex flex-col gap-6 px-5 py-6">
         <div className="flex flex-col gap-1 pb-2">
           <h2 className="text-base font-semibold text-foreground">새 경기 일정 등록</h2>
-          <p className="text-[13px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             경기에 참여하는 두 팀과 일정을 입력해 주세요.
           </p>
         </div>
@@ -78,7 +78,7 @@ export default function ScheduleCreatePage() {
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-foreground">팀 A</label>
             <Select value={homeTeam} onValueChange={setHomeTeam}>
-              <SelectTrigger className="h-12 w-full rounded-xl border-[1.5px] border-border bg-white px-4 text-sm text-foreground shadow-none focus:border-primary focus:ring-0">
+              <SelectTrigger className="h-12 w-full rounded-xl border border-border bg-white px-4 text-sm text-foreground shadow-none focus:border-primary focus:ring-0">
                 <SelectValue placeholder="팀을 선택하세요" />
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>
@@ -93,7 +93,7 @@ export default function ScheduleCreatePage() {
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-foreground">팀 B</label>
             <Select value={awayTeam} onValueChange={setAwayTeam}>
-              <SelectTrigger className="h-12 w-full rounded-xl border-[1.5px] border-border bg-white px-4 text-sm text-foreground shadow-none focus:border-primary focus:ring-0">
+              <SelectTrigger className="h-12 w-full rounded-xl border border-border bg-white px-4 text-sm text-foreground shadow-none focus:border-primary focus:ring-0">
                 <SelectValue placeholder="팀을 선택하세요" />
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>
@@ -111,7 +111,7 @@ export default function ScheduleCreatePage() {
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="h-12 rounded-xl border-[1.5px] border-border px-4 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
+              className="h-12 rounded-xl border border-border px-4 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
             />
           </div>
 
@@ -119,7 +119,7 @@ export default function ScheduleCreatePage() {
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-foreground">시간</label>
             <Select value={time} onValueChange={setTime}>
-              <SelectTrigger className="h-12 w-full rounded-xl border-[1.5px] border-border bg-white px-4 text-sm text-foreground shadow-none focus:border-primary focus:ring-0">
+              <SelectTrigger className="h-12 w-full rounded-xl border border-border bg-white px-4 text-sm text-foreground shadow-none focus:border-primary focus:ring-0">
                 <SelectValue placeholder="시간을 선택하세요" />
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>
@@ -138,7 +138,7 @@ export default function ScheduleCreatePage() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="장소를 입력하세요"
-              className="h-12 rounded-xl border-[1.5px] border-border px-4 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
+              className="h-12 rounded-xl border border-border px-4 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
             />
           </div>
         </div>

@@ -9,7 +9,7 @@ type SegmentType = 'team' | 'player';
 
 function RankSkeleton() {
   return (
-    <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+    <div className="overflow-hidden rounded-xl border border-border">
       {Array.from({ length: 3 }).map((_, i) => (
         <div
           key={i}
@@ -56,7 +56,7 @@ export function RankSection() {
       <SectionTitle title="순위" />
 
       {/* Segmented Control */}
-      <div className="relative flex h-11 gap-1 rounded-xl border-[1.5px] border-border p-1">
+      <div className="relative flex h-11 gap-1 rounded-xl border border-border p-1">
         {/* Sliding indicator */}
         <div
           className="absolute top-1 bottom-1 left-1 w-[calc(50%-2px)] rounded-lg bg-primary"
@@ -89,7 +89,7 @@ export function RankSection() {
       ) : error ? (
         <ErrorMessage />
       ) : (
-        <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+        <div className="overflow-hidden rounded-xl border border-border">
           {segment === 'team'
             ? topTeams.map((item, index) => (
                 <div
@@ -99,7 +99,7 @@ export function RankSection() {
                   <span className="w-6 text-center text-base font-semibold text-primary">
                     {index + 1}
                   </span>
-                  <span className="flex-1 text-[15px] font-medium text-foreground">
+                  <span className="flex-1 text-sm font-medium text-foreground">
                     {item.name}
                   </span>
                   <span className="text-sm font-semibold text-primary">{item.wins}승</span>
@@ -114,7 +114,7 @@ export function RankSection() {
                     {index + 1}
                   </span>
                   <div className="flex flex-1 flex-col gap-0.5">
-                    <span className="text-[15px] font-medium text-foreground">
+                    <span className="text-sm font-medium text-foreground">
                       {item.number}. {item.name}
                     </span>
                     <span className="text-xs text-muted-foreground">{item.teamName}</span>

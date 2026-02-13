@@ -63,6 +63,7 @@ npm run preview  # 빌드 결과 미리보기
 - 상수: UPPER_SNAKE_CASE
 - 파일명: 컴포넌트는 PascalCase, 나머지는 camelCase
 - 스타일: Tailwind CSS 클래스 사용, 인라인 스타일 지양
+- **Tailwind `[...]` 임의값 금지**: 표준 유틸리티가 있으면 반드시 사용. CSS 변수는 TW4 bare value 문법 `h-(--var)` 사용, boolean data attr은 `data-disabled:` shorthand 사용. `calc()`/`env()`/`dvh` 등 대체 불가한 경우만 예외 허용.
 - Import: 절대경로 alias 사용 (`@features`, `@shared`, `@services`, `@mocks`)
   - 예: `import { Button } from '@shared/components/Button'`
 

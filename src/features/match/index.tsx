@@ -22,7 +22,7 @@ export default function MatchPage() {
             </button>
           )}
         </div>
-        <p className="pb-2 text-[13px] leading-5 text-muted-foreground">
+        <p className="whitespace-pre-line pb-2 text-xs leading-5 text-muted-foreground">
           {isAdmin
             ? '예정된 경기를 탭하면 일정을 수정하고,\n완료된 경기를 탭하면 결과를 등록할 수 있습니다.'
             : '모든 경기 일정과 결과를 확인할 수 있습니다.'}

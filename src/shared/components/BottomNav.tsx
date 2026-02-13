@@ -15,25 +15,28 @@ export function BottomNav() {
   const items = isAdmin ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
 
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-120 bg-card rounded-t-2xl border-[1.5px] border-border p-1 pb-[max(0.25rem,env(safe-area-inset-bottom))] z-50">
-      <ul className="flex justify-around items-center">
-        {items.map(({ to, label, icon: Icon }) => (
-          <li key={to}>
-            <NavLink
-              to={to}
-              end={to === '/'}
-              className={({ isActive }) =>
-                `flex flex-col items-center justify-center gap-1 py-2 px-3.5 text-[11px] transition-colors ${
-                  isActive ? 'text-primary font-semibold' : 'text-muted-foreground'
-                }`
-              }
-            >
-              <Icon className="size-5.5" />
-              <span>{label}</span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-120 z-40">
+      <div className="rounded-t-2xl border border-b-0 border-border bg-card p-1">
+        <ul className="flex justify-around items-center">
+          {items.map(({ to, label, icon: Icon }) => (
+            <li key={to}>
+              <NavLink
+                to={to}
+                end={to === '/'}
+                className={({ isActive }) =>
+                  `flex flex-col items-center justify-center gap-1 py-2 px-3.5 text-xs transition-colors ${
+                    isActive ? 'text-primary font-semibold' : 'text-muted-foreground'
+                  }`
+                }
+              >
+                <Icon className="size-5.5" />
+                <span>{label}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="bg-card pb-[env(safe-area-inset-bottom)]" />
     </nav>
   );
 }
