@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, Settings, Pencil, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { DeleteConfirmDialog } from '@shared/components/DeleteConfirmDialog';
-import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { Skeleton } from '@shared/components/Skeleton';
 import { ErrorMessage } from '@shared/components/ErrorMessage';
 import { useTeams } from './hooks/useTeams';
 import { usePlayers, useDeletePlayer } from './hooks/usePlayers';
@@ -67,7 +67,20 @@ export default function PlayerManagePage() {
 
         {/* Player List */}
         {isLoading ? (
-          <LoadingSpinner />
+          <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex h-14 items-center justify-between border-b border-border px-4 last:border-b-0"
+              >
+                <Skeleton className="h-4 w-28" />
+                <div className="flex items-center gap-3">
+                  <Skeleton className="size-4.5" />
+                  <Skeleton className="size-4.5" />
+                </div>
+              </div>
+            ))}
+          </div>
         ) : error ? (
           <ErrorMessage />
         ) : (
@@ -100,13 +113,13 @@ export default function PlayerManagePage() {
                       onClick={() => navigate(`/team/${teamId}/players/${player.id}/edit`)}
                       className="cursor-pointer p-0.5 text-muted-foreground/60"
                     >
-                      <Pencil className="size-[18px]" />
+                      <Pencil className="size-4.5" />
                     </button>
                     <button
                       onClick={() => setDeleteTargetId(player.id)}
                       className="cursor-pointer p-0.5 text-muted-foreground/60"
                     >
-                      <Trash2 className="size-[18px]" />
+                      <Trash2 className="size-4.5" />
                     </button>
                   </div>
                 </div>

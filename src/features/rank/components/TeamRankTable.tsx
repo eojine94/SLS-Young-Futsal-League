@@ -1,8 +1,60 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { Skeleton } from '@shared/components/Skeleton';
 import { ErrorMessage } from '@shared/components/ErrorMessage';
 import { useTeamRankings } from '../hooks/useRankings';
+
+function TeamRankTableSkeleton() {
+  return (
+    <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+      <div className="flex h-11 items-center bg-muted">
+        <div className="flex w-10 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">순위</span>
+        </div>
+        <div className="flex min-w-0 flex-1 items-center px-3">
+          <span className="text-[13px] font-semibold text-muted-foreground">팀명</span>
+        </div>
+        <div className="flex w-12 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">경기</span>
+        </div>
+        <div className="flex w-12 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">승</span>
+        </div>
+        <div className="flex w-10 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">무</span>
+        </div>
+        <div className="flex w-12 shrink-0 items-center justify-center">
+          <span className="text-[13px] font-semibold text-muted-foreground">패</span>
+        </div>
+      </div>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div
+          key={i}
+          className="flex h-11 items-center border-b border-border last:border-b-0"
+        >
+          <div className="flex w-10 shrink-0 items-center justify-center">
+            <Skeleton className="h-4 w-4" />
+          </div>
+          <div className="flex min-w-0 flex-1 items-center px-3">
+            <Skeleton className="h-4 w-20" />
+          </div>
+          <div className="flex w-12 shrink-0 items-center justify-center">
+            <Skeleton className="h-4 w-4" />
+          </div>
+          <div className="flex w-12 shrink-0 items-center justify-center">
+            <Skeleton className="h-4 w-4" />
+          </div>
+          <div className="flex w-10 shrink-0 items-center justify-center">
+            <Skeleton className="h-4 w-4" />
+          </div>
+          <div className="flex w-12 shrink-0 items-center justify-center">
+            <Skeleton className="h-4 w-4" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export function TeamRankTable() {
   const navigate = useNavigate();
@@ -16,7 +68,7 @@ export function TeamRankTable() {
     });
   }, [teams]);
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <TeamRankTableSkeleton />;
   if (error) return <ErrorMessage />;
 
   return (

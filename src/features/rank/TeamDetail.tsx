@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { Skeleton } from '@shared/components/Skeleton';
 import { ErrorMessage } from '@shared/components/ErrorMessage';
 import { useTeams } from '@features/team/hooks/useTeams';
 import { usePlayerRankingsByTeam } from './hooks/useRankings';
@@ -45,7 +45,41 @@ export default function TeamDetailPage() {
         </div>
 
         {isLoading ? (
-          <LoadingSpinner />
+          <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+            <div className="flex h-11 items-center bg-muted">
+              <div className="flex w-11 shrink-0 items-center justify-center">
+                <span className="text-[13px] font-semibold text-muted-foreground">순위</span>
+              </div>
+              <div className="flex min-w-0 flex-1 items-center px-3">
+                <span className="text-[13px] font-semibold text-muted-foreground">이름</span>
+              </div>
+              <div className="flex w-14 shrink-0 items-center justify-center">
+                <span className="text-[13px] font-semibold text-muted-foreground">골</span>
+              </div>
+              <div className="flex w-14 shrink-0 items-center justify-center">
+                <span className="text-[13px] font-semibold text-muted-foreground">도움</span>
+              </div>
+            </div>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex h-11 items-center border-b border-border last:border-b-0"
+              >
+                <div className="flex w-11 shrink-0 items-center justify-center">
+                  <Skeleton className="h-4 w-4" />
+                </div>
+                <div className="flex min-w-0 flex-1 items-center px-3">
+                  <Skeleton className="h-4 w-24" />
+                </div>
+                <div className="flex w-14 shrink-0 items-center justify-center">
+                  <Skeleton className="h-4 w-4" />
+                </div>
+                <div className="flex w-14 shrink-0 items-center justify-center">
+                  <Skeleton className="h-4 w-4" />
+                </div>
+              </div>
+            ))}
+          </div>
         ) : error ? (
           <ErrorMessage />
         ) : (

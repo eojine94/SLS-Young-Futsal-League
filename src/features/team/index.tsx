@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Users, ChevronRight } from 'lucide-react';
 import { PageHeader } from '@shared/components/Header';
-import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+import { Skeleton } from '@shared/components/Skeleton';
 import { ErrorMessage } from '@shared/components/ErrorMessage';
 import { useTeams } from './hooks/useTeams';
 
@@ -26,7 +26,22 @@ export default function TeamPage() {
 
         {/* Team List */}
         {isLoading ? (
-          <LoadingSpinner />
+          <div className="mt-5 overflow-hidden rounded-xl border-[1.5px] border-border">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex h-16 items-center justify-between border-b border-border px-4 last:border-b-0"
+              >
+                <div className="flex items-center gap-3">
+                  <Skeleton className="size-10 rounded-lg" />
+                  <Skeleton className="h-4 w-24" />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Skeleton className="h-3.5 w-8" />
+                </div>
+              </div>
+            ))}
+          </div>
         ) : error ? (
           <ErrorMessage />
         ) : (
