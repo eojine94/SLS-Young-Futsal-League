@@ -82,7 +82,7 @@ export function PlayerSelectSheet({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col justify-end">
+    <div className="fixed inset-0 z-50 flex flex-col justify-end">
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40" onClick={handleClose} />
 
@@ -96,7 +96,7 @@ export function PlayerSelectSheet({
               <X className="size-6" />
             </button>
           </div>
-          <p className="text-[13px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             {teamName}에서 기록할 선수를 선택하세요.
           </p>
         </div>
@@ -114,7 +114,7 @@ export function PlayerSelectSheet({
             return (
               <div
                 key={player.id}
-                className={`flex flex-col ${!isLast ? 'border-b border-border' : ''} ${isSelected ? 'bg-[#F5F6F8]' : ''}`}
+                className={`flex flex-col ${!isLast ? 'border-b border-border' : ''} ${isSelected ? 'bg-muted' : ''}`}
               >
                 {/* Player Row */}
                 <button
@@ -122,14 +122,14 @@ export function PlayerSelectSheet({
                   className="flex cursor-pointer items-center justify-between px-6 py-4"
                 >
                   <span
-                    className={`text-[15px] ${isSelected ? 'font-semibold' : 'font-medium'} text-foreground`}
+                    className={`text-sm ${isSelected ? 'font-semibold' : 'font-medium'} text-foreground`}
                   >
                     {player.number}. {player.name}
                   </span>
                   {isSelected ? (
-                    <CircleCheck className="size-[22px] text-primary" />
+                    <CircleCheck className="size-5.5 text-primary" />
                   ) : (
-                    <Circle className="size-[22px] text-border" />
+                    <Circle className="size-5.5 text-border" />
                   )}
                 </button>
 
@@ -139,7 +139,7 @@ export function PlayerSelectSheet({
                     {/* Goal Stepper */}
                     <div className="flex flex-1 flex-col gap-1.5">
                       <span className="text-xs font-medium text-muted-foreground">골</span>
-                      <div className="flex h-9 items-center overflow-hidden rounded-[10px] border-[1.5px] border-border bg-white">
+                      <div className="flex h-9 items-center overflow-hidden rounded-lg border border-border bg-white">
                         <button
                           onClick={() => updateStat(player.id, 'goals', -1)}
                           className="flex h-full w-9 cursor-pointer items-center justify-center text-zinc-400"
@@ -147,7 +147,7 @@ export function PlayerSelectSheet({
                           <Minus className="size-4" />
                         </button>
                         <div className="flex h-full flex-1 items-center justify-center">
-                          <span className="text-[15px] font-semibold text-foreground">
+                          <span className="text-sm font-semibold text-foreground">
                             {stats.goals}
                           </span>
                         </div>
@@ -163,7 +163,7 @@ export function PlayerSelectSheet({
                     {/* Assist Stepper */}
                     <div className="flex flex-1 flex-col gap-1.5">
                       <span className="text-xs font-medium text-muted-foreground">도움</span>
-                      <div className="flex h-9 items-center overflow-hidden rounded-[10px] border-[1.5px] border-border bg-white">
+                      <div className="flex h-9 items-center overflow-hidden rounded-lg border border-border bg-white">
                         <button
                           onClick={() => updateStat(player.id, 'assists', -1)}
                           className="flex h-full w-9 cursor-pointer items-center justify-center text-zinc-400"
@@ -171,7 +171,7 @@ export function PlayerSelectSheet({
                           <Minus className="size-4" />
                         </button>
                         <div className="flex h-full flex-1 items-center justify-center">
-                          <span className="text-[15px] font-semibold text-foreground">
+                          <span className="text-sm font-semibold text-foreground">
                             {stats.assists}
                           </span>
                         </div>

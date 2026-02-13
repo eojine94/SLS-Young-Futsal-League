@@ -26,7 +26,7 @@ export default function TeamPage() {
 
         {/* Team List */}
         {isLoading ? (
-          <div className="mt-5 overflow-hidden rounded-xl border-[1.5px] border-border">
+          <div className="mt-5 overflow-hidden rounded-xl border border-border">
             {Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
@@ -45,7 +45,7 @@ export default function TeamPage() {
         ) : error ? (
           <ErrorMessage />
         ) : (
-          <div className="mt-5 overflow-hidden rounded-xl border-[1.5px] border-border">
+          <div className="mt-5 overflow-hidden rounded-xl border border-border">
             {teams?.map((team) => (
               <button
                 key={team.id}
@@ -57,12 +57,12 @@ export default function TeamPage() {
                   <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
                     <Users className="size-5 text-primary" />
                   </div>
-                  <span className="text-[15px] font-medium text-foreground">{team.name}</span>
+                  <span className="text-sm font-medium text-foreground">{team.name}</span>
                 </div>
 
                 {/* Right: Count + Chevron */}
                 <div className="flex items-center gap-2">
-                  <span className="text-[13px] text-muted-foreground">{team.playerCount}명</span>
+                  <span className="text-xs text-muted-foreground">{team.playerCount}명</span>
                   <ChevronRight className="size-5 text-muted-foreground/60" />
                 </div>
               </button>

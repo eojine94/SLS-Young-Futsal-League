@@ -174,7 +174,7 @@ function ResultForm({ match, existingRecords, matchId }: ResultFormProps) {
           <h2 className="text-base font-semibold text-foreground">
             {isEdit ? '경기 결과 수정' : '경기 결과 등록'}
           </h2>
-          <p className="text-[13px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             팀 스코어와 선수별 기록(골, 도움)을 입력하세요.
           </p>
           <p className="text-sm font-semibold text-foreground">
@@ -183,7 +183,7 @@ function ResultForm({ match, existingRecords, matchId }: ResultFormProps) {
         </div>
 
         {/* Score Input */}
-        <div className="flex items-center gap-6 rounded-2xl border-[1.5px] border-border p-5">
+        <div className="flex items-center gap-6 rounded-2xl border border-border p-5">
           {/* Home */}
           <div className="flex flex-1 flex-col items-center gap-2">
             <span className="text-sm font-semibold text-foreground">{match.homeTeam}</span>
@@ -192,7 +192,7 @@ function ResultForm({ match, existingRecords, matchId }: ResultFormProps) {
               min="0"
               value={homeScore}
               onChange={(e) => setHomeScore(e.target.value)}
-              className="h-12 w-16 rounded-lg border-[1.5px] border-border text-center text-2xl font-bold text-foreground outline-none focus:border-primary"
+              className="h-12 w-16 rounded-lg border border-border text-center text-2xl font-bold text-foreground outline-none focus:border-primary"
             />
           </div>
           <span className="text-base font-semibold text-muted-foreground/60">vs</span>
@@ -204,7 +204,7 @@ function ResultForm({ match, existingRecords, matchId }: ResultFormProps) {
               min="0"
               value={awayScore}
               onChange={(e) => setAwayScore(e.target.value)}
-              className="h-12 w-16 rounded-lg border-[1.5px] border-border text-center text-2xl font-bold text-foreground outline-none focus:border-primary"
+              className="h-12 w-16 rounded-lg border border-border text-center text-2xl font-bold text-foreground outline-none focus:border-primary"
             />
           </div>
         </div>
@@ -238,7 +238,7 @@ function ResultForm({ match, existingRecords, matchId }: ResultFormProps) {
         {(hasHomeMismatch || hasAwayMismatch) && (
           <div className="flex items-start gap-2 rounded-xl bg-orange-50 px-4 py-3">
             <TriangleAlert className="mt-0.5 size-4 shrink-0 text-orange-500" />
-            <div className="flex flex-col gap-0.5 text-[13px] text-orange-700">
+            <div className="flex flex-col gap-0.5 text-xs text-orange-700">
               {hasHomeMismatch && (
                 <span>
                   {match.homeTeam}: 개인 골 합계({homeGoalSum})와 팀 스코어({homeScoreNum})가 다릅니다.
@@ -297,11 +297,11 @@ function TeamRecordSection({
     <div className="flex flex-col gap-3">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <span className="text-[15px] font-semibold text-foreground">{teamName} 기록</span>
+        <span className="text-sm font-semibold text-foreground">{teamName} 기록</span>
         {hasAvailablePlayers && (
           <button
             onClick={onOpenSheet}
-            className="cursor-pointer text-[13px] font-medium text-primary"
+            className="cursor-pointer text-xs font-medium text-primary"
           >
             + 기록 추가
           </button>
@@ -310,7 +310,7 @@ function TeamRecordSection({
 
       {/* Records List */}
       {records.length > 0 && (
-        <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+        <div className="overflow-hidden rounded-xl border border-border">
           {records.map((record, index) => (
             <div
               key={record.playerId}
@@ -322,10 +322,10 @@ function TeamRecordSection({
                 {record.playerNumber}. {record.playerName}
               </span>
               <div className="flex items-center gap-3">
-                <span className="text-[13px] font-semibold text-primary">
+                <span className="text-xs font-semibold text-primary">
                   골 {record.goals}
                 </span>
-                <span className="text-[13px] text-muted-foreground">
+                <span className="text-xs text-muted-foreground">
                   도움 {record.assists}
                 </span>
                 <button

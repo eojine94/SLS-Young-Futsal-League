@@ -81,7 +81,7 @@ export default function PlayerCreatePage() {
         {/* Guide Text */}
         <div className="flex flex-col gap-1 pb-2">
           <h2 className="text-base font-semibold text-foreground">선수 등록</h2>
-          <p className="text-[13px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             여러 명의 선수를 한 번에 등록할 수 있습니다.
           </p>
         </div>
@@ -91,7 +91,7 @@ export default function PlayerCreatePage() {
           {forms.map((form, index) => (
             <div
               key={index}
-              className="flex flex-col gap-3 rounded-xl border-[1.5px] border-border p-4"
+              className="flex flex-col gap-3 rounded-xl border border-border p-4"
             >
               {/* Card Header */}
               <div className="flex items-center justify-between">
@@ -109,32 +109,32 @@ export default function PlayerCreatePage() {
               {/* Name + Number Row */}
               <div className="flex gap-3">
                 <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-                  <label className="text-[13px] font-medium text-foreground">이름</label>
+                  <label className="text-xs font-medium text-foreground">이름</label>
                   <input
                     type="text"
                     value={form.name}
                     onChange={(e) => updateForm(index, 'name', e.target.value)}
                     placeholder="이름 입력"
-                    className="h-12 rounded-xl border-[1.5px] border-border px-4 text-[15px] text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
+                    className="h-12 rounded-xl border border-border px-4 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
                   />
                 </div>
-                <div className="flex w-[100px] shrink-0 flex-col gap-1.5">
-                  <label className="text-[13px] font-medium text-foreground">등번호</label>
+                <div className="flex w-25 shrink-0 flex-col gap-1.5">
+                  <label className="text-xs font-medium text-foreground">등번호</label>
                   <input
                     type="number"
                     min="0"
                     value={form.number}
                     onChange={(e) => updateForm(index, 'number', e.target.value)}
-                    className="h-12 rounded-xl border-[1.5px] border-border px-4 text-[15px] text-foreground outline-none focus:border-primary"
+                    className="h-12 rounded-xl border border-border px-4 text-sm text-foreground outline-none focus:border-primary"
                   />
                 </div>
               </div>
 
               {/* Role Select */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[13px] font-medium text-foreground">역할</label>
+                <label className="text-xs font-medium text-foreground">역할</label>
                 <Select value={form.role} onValueChange={(v) => updateForm(index, 'role', v)}>
-                  <SelectTrigger className="h-12 w-full rounded-xl border-[1.5px] border-border bg-white px-4 text-[15px] text-foreground shadow-none focus:border-primary focus:ring-0">
+                  <SelectTrigger className="h-12 w-full rounded-xl border border-border bg-white px-4 text-sm text-foreground shadow-none focus:border-primary focus:ring-0">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent position="popper" sideOffset={4}>

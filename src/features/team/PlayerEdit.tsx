@@ -65,40 +65,40 @@ export default function PlayerEditPage() {
         {/* Guide Text */}
         <div className="flex flex-col gap-1 pb-2">
           <h2 className="text-base font-semibold text-foreground">선수 정보 수정</h2>
-          <p className="text-[13px] text-muted-foreground">수정할 정보를 입력한 후 저장하세요.</p>
+          <p className="text-xs text-muted-foreground">수정할 정보를 입력한 후 저장하세요.</p>
         </div>
 
         {/* Form */}
         <div className="flex flex-col gap-5">
           {/* Name */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[13px] font-medium text-foreground">이름</label>
+            <label className="text-xs font-medium text-foreground">이름</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="이름 입력"
-              className="h-12 rounded-xl border-[1.5px] border-border px-4 text-[15px] text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
+              className="h-12 rounded-xl border border-border px-4 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
             />
           </div>
 
           {/* Number */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[13px] font-medium text-foreground">등번호</label>
+            <label className="text-xs font-medium text-foreground">등번호</label>
             <input
               type="number"
               min="0"
               value={number}
               onChange={(e) => setNumber(e.target.value)}
-              className="h-12 rounded-xl border-[1.5px] border-border px-4 text-[15px] text-foreground outline-none focus:border-primary"
+              className="h-12 rounded-xl border border-border px-4 text-sm text-foreground outline-none focus:border-primary"
             />
           </div>
 
           {/* Role */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[13px] font-medium text-foreground">역할</label>
+            <label className="text-xs font-medium text-foreground">역할</label>
             <Select value={role} onValueChange={(v) => setRole(v as 'leader' | 'member')}>
-              <SelectTrigger className="h-12 w-full rounded-xl border-[1.5px] border-border bg-white px-4 text-[15px] text-foreground shadow-none focus:border-primary focus:ring-0">
+              <SelectTrigger className="h-12 w-full rounded-xl border border-border bg-white px-4 text-sm text-foreground shadow-none focus:border-primary focus:ring-0">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={4}>

@@ -16,7 +16,7 @@ export function PageHeader() {
 
   return (
     <header className="flex items-center justify-between h-14 px-6 bg-white">
-      <h1 className="text-xl font-semibold tracking-tight text-foreground">SLS FUTSAL LEAGUE</h1>
+      <h1 className="text-xl font-semibold tracking-tight text-foreground">SLS 젊은교구 풋살 리그</h1>
       <button onClick={handleAuthClick} className="p-1 text-muted-foreground cursor-pointer">
         {isAdmin ? <LogOut className="size-6" /> : <KeyRound className="size-6" />}
       </button>

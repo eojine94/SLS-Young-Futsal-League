@@ -84,7 +84,7 @@ export function MatchList({ isAdmin }: MatchListProps) {
             {Array.from({ length: 2 }).map((_, ci) => (
               <div
                 key={ci}
-                className="flex items-center gap-4 rounded-2xl border-[1.5px] border-border p-4"
+                className="flex items-center gap-4 rounded-2xl border border-border p-4"
               >
                 <Skeleton className="h-10 w-0.75 shrink-0 rounded-sm" />
                 <div className="flex min-w-0 flex-1 flex-col gap-2">
