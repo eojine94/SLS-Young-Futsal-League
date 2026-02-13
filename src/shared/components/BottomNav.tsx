@@ -15,7 +15,7 @@ export function BottomNav() {
   const items = isAdmin ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
 
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-120 bg-card rounded-t-2xl border-[1.5px] border-border p-1 z-50">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-120 bg-card rounded-t-2xl border-[1.5px] border-border p-1 pb-[max(0.25rem,env(safe-area-inset-bottom))] z-50">
       <ul className="flex justify-around items-center">
         {items.map(({ to, label, icon: Icon }) => (
           <li key={to}>
