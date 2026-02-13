@@ -5,14 +5,12 @@ import { toast } from 'sonner';
 import { DeleteConfirmDialog } from '@shared/components/DeleteConfirmDialog';
 import { LoadingSpinner } from '@shared/components/LoadingSpinner';
 import { useTeams, useUpdateTeam, useDeleteTeam } from './hooks/useTeams';
-import { usePlayers } from './hooks/usePlayers';
 
 export default function TeamEditPage() {
   const { teamId } = useParams<{ teamId: string }>();
   const navigate = useNavigate();
 
   const { data: teams, isLoading: teamsLoading } = useTeams();
-  const { data: players, isLoading: playersLoading } = usePlayers(teamId!);
   const updateTeam = useUpdateTeam();
   const deleteTeam = useDeleteTeam();
 
@@ -43,11 +41,6 @@ export default function TeamEditPage() {
   };
 
   const handleDelete = async () => {
-    if (players && players.length > 0) {
-      toast.error('소속 선수가 있는 팀은 삭제할 수 없습니다.');
-      setShowDeleteDialog(false);
-      return;
-    }
     try {
       await deleteTeam.mutateAsync(teamId!);
       toast.success('팀이 삭제되었습니다.');
@@ -58,7 +51,7 @@ export default function TeamEditPage() {
     setShowDeleteDialog(false);
   };
 
-  if (teamsLoading || playersLoading) return <LoadingSpinner />;
+  if (teamsLoading) return <LoadingSpinner />;
 
   return (
     <>
@@ -75,20 +68,20 @@ export default function TeamEditPage() {
         {/* Guide Text */}
         <div className="flex flex-col gap-1 pb-2">
           <h2 className="text-base font-semibold text-foreground">팀 정보 수정</h2>
-          <p className="text-[13px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             팀명을 수정하거나 팀을 삭제할 수 있습니다.
           </p>
         </div>
 
         {/* Input */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[13px] font-medium text-foreground">팀명</label>
+          <label className="text-xs font-medium text-foreground">팀명</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="팀명을 입력하세요"
-            className="h-12 rounded-xl border-[1.5px] border-border px-4 text-[15px] text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
+            className="h-12 rounded-xl border border-border px-4 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
           />
         </div>
 
@@ -115,6 +108,7 @@ export default function TeamEditPage() {
         open={showDeleteDialog}
         onClose={() => setShowDeleteDialog(false)}
         onConfirm={handleDelete}
+        description="팀을 삭제하면 소속 선수, 관련 경기 및 모든 기록이 함께 삭제됩니다."
       />
     </>
   );

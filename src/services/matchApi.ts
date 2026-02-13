@@ -71,6 +71,12 @@ export const matchApi = {
   },
 
   async delete(id: string) {
+    const { error: recordsError } = await supabase
+      .from('player_records')
+      .delete()
+      .eq('match_id', id);
+    if (recordsError) throw recordsError;
+
     const { error } = await supabase
       .from('matches')
       .delete()

@@ -67,7 +67,7 @@ export default function PlayerManagePage() {
 
         {/* Player List */}
         {isLoading ? (
-          <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+          <div className="overflow-hidden rounded-xl border border-border">
             {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={i}
@@ -84,7 +84,7 @@ export default function PlayerManagePage() {
         ) : error ? (
           <ErrorMessage />
         ) : (
-          <div className="overflow-hidden rounded-xl border-[1.5px] border-border">
+          <div className="overflow-hidden rounded-xl border border-border">
             {players?.length === 0 ? (
               <div className="flex h-20 items-center justify-center">
                 <span className="text-sm text-muted-foreground">등록된 선수가 없습니다.</span>
@@ -97,11 +97,11 @@ export default function PlayerManagePage() {
                 >
                   {/* Left: Name + Badge */}
                   <div className="flex items-center gap-2.5">
-                    <span className="text-[15px] font-medium text-foreground">
+                    <span className="text-sm font-medium text-foreground">
                       {player.number}. {player.name}
                     </span>
                     {player.role === 'leader' && (
-                      <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
+                      <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
                         팀장
                       </span>
                     )}
@@ -134,6 +134,7 @@ export default function PlayerManagePage() {
         open={deleteTargetId !== null}
         onClose={() => setDeleteTargetId(null)}
         onConfirm={handleDeleteConfirm}
+        description="선수를 삭제하면 해당 선수의 경기 기록도 함께 삭제됩니다."
       />
     </>
   );
