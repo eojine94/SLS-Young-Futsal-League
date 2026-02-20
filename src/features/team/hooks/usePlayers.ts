@@ -22,7 +22,7 @@ export function usePlayers(teamId: string) {
 
 export function usePlayer(playerId: string) {
   return useQuery({
-    queryKey: ['player', playerId],
+    queryKey: ['players', 'detail', playerId],
     queryFn: () => playerApi.getById(playerId),
     select: mapPlayer,
   });
@@ -35,7 +35,7 @@ export function useCreatePlayers() {
       playerApi.createMany(players),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['players'] });
-      queryClient.invalidateQueries({ queryKey: ['teams'] });
+      queryClient.invalidateQueries({ queryKey: ['rankings'] });
     },
   });
 }
@@ -47,7 +47,7 @@ export function useUpdatePlayer() {
       playerApi.update(id, updates),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['players'] });
-      queryClient.invalidateQueries({ queryKey: ['player'] });
+      queryClient.invalidateQueries({ queryKey: ['rankings'] });
     },
   });
 }
@@ -58,7 +58,7 @@ export function useDeletePlayer() {
     mutationFn: (id: string) => playerApi.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['players'] });
-      queryClient.invalidateQueries({ queryKey: ['teams'] });
+      queryClient.invalidateQueries({ queryKey: ['rankings'] });
     },
   });
 }
