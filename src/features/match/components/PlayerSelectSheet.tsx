@@ -82,12 +82,12 @@ export function PlayerSelectSheet({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col justify-end">
+    <div className="fixed inset-0 z-50 flex items-end justify-center">
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40" onClick={handleClose} />
 
       {/* Bottom Sheet */}
-      <div className="relative flex max-h-[60dvh] flex-col overflow-hidden rounded-t-3xl bg-white">
+      <div className="relative flex max-h-[60dvh] w-full max-w-120 flex-col overflow-hidden rounded-t-3xl bg-white">
         {/* Header */}
         <div className="flex flex-col gap-1 px-6 pb-5 pt-5">
           <div className="flex items-center justify-between">

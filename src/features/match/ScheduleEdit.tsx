@@ -143,8 +143,9 @@ export default function ScheduleEditPage() {
 
           {/* 날짜 */}
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground">날짜</label>
+            <label htmlFor="match-date" className="text-sm font-semibold text-foreground">날짜</label>
             <input
+              id="match-date"
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -169,8 +170,9 @@ export default function ScheduleEditPage() {
 
           {/* 장소 */}
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground">장소</label>
+            <label htmlFor="match-location" className="text-sm font-semibold text-foreground">장소</label>
             <input
+              id="match-location"
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
@@ -204,6 +206,7 @@ export default function ScheduleEditPage() {
         onClose={() => setDeleteOpen(false)}
         onConfirm={handleDelete}
         description="일정을 삭제하면 해당 경기의 선수 기록도 함께 삭제됩니다."
+        isPending={deleteMatch.isPending}
       />
     </>
   );

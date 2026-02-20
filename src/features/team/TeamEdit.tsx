@@ -75,8 +75,9 @@ export default function TeamEditPage() {
 
         {/* Input */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-foreground">팀명</label>
+          <label htmlFor="team-name" className="text-xs font-medium text-foreground">팀명</label>
           <input
+            id="team-name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -109,6 +110,7 @@ export default function TeamEditPage() {
         onClose={() => setShowDeleteDialog(false)}
         onConfirm={handleDelete}
         description="팀을 삭제하면 소속 선수, 관련 경기 및 모든 기록이 함께 삭제됩니다."
+        isPending={deleteTeam.isPending}
       />
     </>
   );

@@ -45,8 +45,9 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4">
           {/* 이메일 */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-foreground">이메일</label>
+            <label htmlFor="login-email" className="text-xs font-medium text-foreground">이메일</label>
             <input
+              id="login-email"
               type="email"
               placeholder="admin@kicklog.com"
               value={email}
@@ -57,8 +58,9 @@ export default function LoginPage() {
 
           {/* 비밀번호 */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-foreground">비밀번호</label>
+            <label htmlFor="login-password" className="text-xs font-medium text-foreground">비밀번호</label>
             <input
+              id="login-password"
               type="password"
               placeholder="비밀번호를 입력하세요"
               value={password}

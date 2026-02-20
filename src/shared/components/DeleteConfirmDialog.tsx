@@ -5,9 +5,10 @@ type DeleteConfirmDialogProps = {
   onClose: () => void;
   onConfirm: () => void;
   description?: string;
+  isPending?: boolean;
 };
 
-export function DeleteConfirmDialog({ open, onClose, onConfirm, description }: DeleteConfirmDialogProps) {
+export function DeleteConfirmDialog({ open, onClose, onConfirm, description, isPending }: DeleteConfirmDialogProps) {
   if (!open) return null;
 
   return (
@@ -34,15 +35,17 @@ export function DeleteConfirmDialog({ open, onClose, onConfirm, description }: D
         <div className="flex w-full gap-3">
           <button
             onClick={onClose}
-            className="flex h-11 flex-1 cursor-pointer items-center justify-center rounded-lg border border-border bg-white text-sm font-semibold text-foreground"
+            disabled={isPending}
+            className="flex h-11 flex-1 cursor-pointer items-center justify-center rounded-lg border border-border bg-white text-sm font-semibold text-foreground disabled:opacity-50 disabled:cursor-not-allowed"
           >
             취소
           </button>
           <button
             onClick={onConfirm}
-            className="flex h-11 flex-1 cursor-pointer items-center justify-center rounded-lg bg-red-500 text-sm font-semibold text-white"
+            disabled={isPending}
+            className="flex h-11 flex-1 cursor-pointer items-center justify-center rounded-lg bg-red-500 text-sm font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            삭제
+            {isPending ? '삭제 중...' : '삭제'}
           </button>
         </div>
       </div>
