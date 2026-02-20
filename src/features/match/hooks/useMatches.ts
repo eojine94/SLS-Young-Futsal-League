@@ -33,7 +33,7 @@ export function useMatches() {
 
 export function useMatch(matchId: string) {
   return useQuery({
-    queryKey: ['match', matchId],
+    queryKey: ['matches', matchId],
     queryFn: () => matchApi.getById(matchId),
     select: mapMatch,
   });
@@ -56,8 +56,6 @@ export function useUpdateMatch() {
       matchApi.update(id, updates),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['matches'] });
-      queryClient.invalidateQueries({ queryKey: ['match'] });
-      queryClient.invalidateQueries({ queryKey: ['rankings'] });
     },
   });
 }
@@ -68,14 +66,13 @@ export function useDeleteMatch() {
     mutationFn: matchApi.delete,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['matches'] });
-      queryClient.invalidateQueries({ queryKey: ['rankings'] });
     },
   });
 }
 
 export function useMatchRecords(matchId: string) {
   return useQuery({
-    queryKey: ['matchRecords', matchId],
+    queryKey: ['matches', 'records', matchId],
     queryFn: () => playerRecordApi.getByMatchId(matchId),
   });
 }
@@ -105,8 +102,6 @@ export function useSubmitResult() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['matches'] });
-      queryClient.invalidateQueries({ queryKey: ['match'] });
-      queryClient.invalidateQueries({ queryKey: ['matchRecords'] });
       queryClient.invalidateQueries({ queryKey: ['rankings'] });
     },
   });

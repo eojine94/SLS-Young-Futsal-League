@@ -1,22 +1,25 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 import { Layout } from '@shared/components/Layout';
-import HomePage from '@features/home/index';
-import RankPage from '@features/rank/index';
-import TeamDetailPage from '@features/rank/TeamDetail';
-import MatchPage from '@features/match/index';
-import TeamPage from '@features/team/index';
-import TeamCreatePage from '@features/team/TeamCreate';
-import TeamEditPage from '@features/team/TeamEdit';
-import PlayerManagePage from '@features/team/PlayerManage';
-import PlayerCreatePage from '@features/team/PlayerCreate';
-import PlayerEditPage from '@features/team/PlayerEdit';
-import ScheduleCreatePage from '@features/match/ScheduleCreate';
-import ScheduleEditPage from '@features/match/ScheduleEdit';
-import ResultCreatePage from '@features/match/ResultCreate';
-import LoginPage from '@features/auth/index';
 import { AuthProvider } from '@shared/hooks/useAuth';
+import { LoadingSpinner } from '@shared/components/LoadingSpinner';
+
+const HomePage = lazy(() => import('@features/home/index'));
+const RankPage = lazy(() => import('@features/rank/index'));
+const TeamDetailPage = lazy(() => import('@features/rank/TeamDetail'));
+const MatchPage = lazy(() => import('@features/match/index'));
+const TeamPage = lazy(() => import('@features/team/index'));
+const TeamCreatePage = lazy(() => import('@features/team/TeamCreate'));
+const TeamEditPage = lazy(() => import('@features/team/TeamEdit'));
+const PlayerManagePage = lazy(() => import('@features/team/PlayerManage'));
+const PlayerCreatePage = lazy(() => import('@features/team/PlayerCreate'));
+const PlayerEditPage = lazy(() => import('@features/team/PlayerEdit'));
+const ScheduleCreatePage = lazy(() => import('@features/match/ScheduleCreate'));
+const ScheduleEditPage = lazy(() => import('@features/match/ScheduleEdit'));
+const ResultCreatePage = lazy(() => import('@features/match/ResultCreate'));
+const LoginPage = lazy(() => import('@features/auth/index'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,6 +35,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
       <BrowserRouter>
+        <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
@@ -52,7 +56,13 @@ export default function App() {
           </Route>
           <Route path="/login" element={<LoginPage />} />
         </Routes>
-        <Toaster position="bottom-center" richColors offset={72} />
+        </Suspense>
+        <Toaster
+          position="bottom-center"
+          richColors
+          offset={{ bottom: 'calc(4.5rem + env(safe-area-inset-bottom))' }}
+          mobileOffset={{ bottom: 'calc(4.5rem + env(safe-area-inset-bottom))' }}
+        />
       </BrowserRouter>
       </AuthProvider>
     </QueryClientProvider>
