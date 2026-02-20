@@ -132,12 +132,13 @@ PR 생성 후 `gh pr diff`로 변경 사항을 리뷰한다:
 - **이상 없음** → 리뷰 코멘트 남긴 후 `gh pr merge --squash`로 Merge 실행
 - **이슈 발견** → 리뷰 코멘트 남기고 해당 그룹 워크플로우 중단 (PR은 유지, 나머지 그룹은 계속 진행)
 
-### Step 3f: main 복귀 및 pull
+### Step 3f: 브랜치 정리 → main 복귀 및 pull
 
 Merge 완료 후:
 1. `git checkout main`으로 main 브랜치로 복귀
-2. `git pull origin main`으로 최신 상태 동기화
-3. 다음 그룹이 있으면 Step 3a로 돌아가서 반복
+2. `git branch -d <브랜치명>`으로 로컬 브랜치 삭제 (원격은 GitHub 설정으로 자동 삭제)
+3. `git pull origin main`으로 최신 상태 동기화
+4. 다음 그룹이 있으면 Step 3a로 돌아가서 반복
 
 ---
 
