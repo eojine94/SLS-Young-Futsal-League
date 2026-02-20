@@ -72,8 +72,9 @@ export default function PlayerEditPage() {
         <div className="flex flex-col gap-5">
           {/* Name */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-foreground">이름</label>
+            <label htmlFor="player-name" className="text-xs font-medium text-foreground">이름</label>
             <input
+              id="player-name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -84,8 +85,9 @@ export default function PlayerEditPage() {
 
           {/* Number */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-foreground">등번호</label>
+            <label htmlFor="player-number" className="text-xs font-medium text-foreground">등번호</label>
             <input
+              id="player-number"
               type="number"
               min="0"
               value={number}

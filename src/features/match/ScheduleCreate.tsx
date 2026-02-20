@@ -106,8 +106,9 @@ export default function ScheduleCreatePage() {
 
           {/* 날짜 */}
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground">날짜</label>
+            <label htmlFor="match-date" className="text-sm font-semibold text-foreground">날짜</label>
             <input
+              id="match-date"
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -132,8 +133,9 @@ export default function ScheduleCreatePage() {
 
           {/* 장소 */}
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground">장소</label>
+            <label htmlFor="match-location" className="text-sm font-semibold text-foreground">장소</label>
             <input
+              id="match-location"
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}

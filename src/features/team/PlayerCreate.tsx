@@ -109,8 +109,9 @@ export default function PlayerCreatePage() {
               {/* Name + Number Row */}
               <div className="flex gap-3">
                 <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-                  <label className="text-xs font-medium text-foreground">이름</label>
+                  <label htmlFor={`player-name-${index}`} className="text-xs font-medium text-foreground">이름</label>
                   <input
+                    id={`player-name-${index}`}
                     type="text"
                     value={form.name}
                     onChange={(e) => updateForm(index, 'name', e.target.value)}
@@ -119,8 +120,9 @@ export default function PlayerCreatePage() {
                   />
                 </div>
                 <div className="flex w-25 shrink-0 flex-col gap-1.5">
-                  <label className="text-xs font-medium text-foreground">등번호</label>
+                  <label htmlFor={`player-number-${index}`} className="text-xs font-medium text-foreground">등번호</label>
                   <input
+                    id={`player-number-${index}`}
                     type="number"
                     min="0"
                     value={form.number}

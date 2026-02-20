@@ -135,6 +135,7 @@ export default function PlayerManagePage() {
         onClose={() => setDeleteTargetId(null)}
         onConfirm={handleDeleteConfirm}
         description="선수를 삭제하면 해당 선수의 경기 기록도 함께 삭제됩니다."
+        isPending={deletePlayer.isPending}
       />
     </>
   );

@@ -45,8 +45,9 @@ export default function TeamCreatePage() {
 
         {/* Input */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-foreground">팀명</label>
+          <label htmlFor="team-name" className="text-xs font-medium text-foreground">팀명</label>
           <input
+            id="team-name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
