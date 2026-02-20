@@ -62,6 +62,6 @@
 
 ### 남은 항목
 
-- [ ] 빈 상태(Empty State) UI
-- [ ] 성능 최적화
+- [x] 빈 상태(Empty State) UI
+- [x] 성능 최적화 (queryKey 계층 구조화, React.lazy code splitting)
 - [ ] 추가 UI 폴리싱 및 인터랙션 개선
