@@ -7,6 +7,11 @@ export type TeamRank = {
   losses: number;
 };
 
+export type TeamRankEnriched = TeamRank & {
+  points: number;
+  goalDifference: number;
+};
+
 export type PlayerRank = {
   id: string;
   name: string;

@@ -9,6 +9,13 @@ export type TeamRankingRow = {
   losses: number;
 };
 
+export type MatchScoreRow = {
+  team_a_id: string;
+  team_b_id: string;
+  team_a_score: number;
+  team_b_score: number;
+};
+
 export type PlayerRankingRow = {
   id: string;
   name: string;
@@ -26,6 +33,15 @@ export const rankApi = {
       .select('*');
     if (error) throw error;
     return data as TeamRankingRow[];
+  },
+
+  async getMatchScores(): Promise<MatchScoreRow[]> {
+    const { data, error } = await supabase
+      .from('matches')
+      .select('team_a_id, team_b_id, team_a_score, team_b_score')
+      .not('team_a_score', 'is', null);
+    if (error) throw error;
+    return data as MatchScoreRow[];
   },
 
   async getPlayerRankings(): Promise<PlayerRankingRow[]> {
