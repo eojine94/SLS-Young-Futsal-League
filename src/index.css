@@ -91,6 +91,14 @@
   }
 }
 
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
 /* Sonner toast를 Layout(480px) 안에 맞춤 */
 [data-sonner-toaster] {
   --width: min(calc(100vw - 40px), 440px) !important;
