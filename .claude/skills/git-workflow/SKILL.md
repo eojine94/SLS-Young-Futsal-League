@@ -103,12 +103,19 @@ description: 변경된 파일들을 성격별로 나눠서 브랜치 생성 → 
 
 ### Step 3e: PR 리뷰 → Merge
 
-PR 생성 후 `gh pr diff`로 변경 사항을 리뷰한다:
+PR 생성 후 `gh pr diff`로 변경 사항을 리뷰한다.
+
+**코드 컨벤션 체크:**
 - 코드 품질 이슈 체크
 - TypeScript 타입 (`type` 사용 여부, `interface` 사용 금지)
 - Tailwind CSS 규칙 준수 여부
 - Import alias 사용 여부 (`@features`, `@shared`, `@services`)
 - 관심사 분리 원칙 준수 여부
+
+**Test plan 체크:**
+- PR 본문의 `## Test plan` 항목들을 diff 기반으로 검증한다
+- 각 항목에 대해 코드 변경이 해당 기능을 올바르게 구현/수정하는지 확인한다
+- 검증 가능한 항목은 체크 표시(`[x]`), 코드만으로 확인 불가한 항목은 `[ ]`로 남긴다
 
 리뷰 결과를 `gh pr comment <PR번호> --body "<리뷰 내용>"`으로 PR에 코멘트로 남긴다.
 
@@ -118,12 +125,16 @@ PR 생성 후 `gh pr diff`로 변경 사항을 리뷰한다:
 
 ### 결과: ✅ 이상 없음 / ⚠️ 이슈 발견
 
-**체크 항목:**
-- [ ] 코드 품질
-- [ ] TypeScript 타입 (type 사용, interface 금지)
-- [ ] Tailwind CSS 규칙 준수
-- [ ] Import alias 사용 (@features, @shared, @services)
-- [ ] 관심사 분리 원칙
+**코드 컨벤션:**
+- [x] 코드 품질
+- [x] TypeScript 타입 (type 사용, interface 금지)
+- [x] Tailwind CSS 규칙 준수
+- [x] Import alias 사용 (@features, @shared, @services)
+- [x] 관심사 분리 원칙
+
+**Test plan:**
+- [x] (PR 본문의 Test plan 항목 — diff로 확인 완료)
+- [ ] (PR 본문의 Test plan 항목 — 코드만으로 확인 불가, 수동 확인 필요)
 
 **상세:**
 (이슈가 있으면 상세 내용 기술)
@@ -136,8 +147,9 @@ PR 생성 후 `gh pr diff`로 변경 사항을 리뷰한다:
 
 Merge 완료 후:
 1. `git checkout main`으로 main 브랜치로 복귀
-2. `git branch -d <브랜치명>`으로 로컬 브랜치 삭제 (원격은 GitHub 설정으로 자동 삭제)
-3. `git pull origin main`으로 최신 상태 동기화
+2. `git branch -d <브랜치명>`으로 로컬 브랜치 삭제
+3. `git push origin --delete <브랜치명>`으로 원격 브랜치 삭제
+4. `git pull origin main`으로 최신 상태 동기화
 4. 다음 그룹이 있으면 Step 3a로 돌아가서 반복
 
 ---
