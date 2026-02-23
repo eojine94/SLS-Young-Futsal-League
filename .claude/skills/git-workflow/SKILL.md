@@ -100,6 +100,7 @@ description: 변경된 파일들을 성격별로 나눠서 브랜치 생성 → 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 ```
 - base 브랜치는 main으로 설정
+- `--assignee eojine94` 옵션 추가
 
 ### Step 3e: PR 리뷰 → Merge
 
@@ -113,9 +114,10 @@ PR 생성 후 `gh pr diff`로 변경 사항을 리뷰한다.
 - 관심사 분리 원칙 준수 여부
 
 **Test plan 체크:**
-- PR 본문의 `## Test plan` 항목들을 diff 기반으로 검증한다
-- 각 항목에 대해 코드 변경이 해당 기능을 올바르게 구현/수정하는지 확인한다
-- 검증 가능한 항목은 체크 표시(`[x]`), 코드만으로 확인 불가한 항목은 `[ ]`로 남긴다
+- PR 본문의 `## Test plan` 항목들을 하나씩 가져와서 diff 기반으로 검증한다
+- 각 항목에 대해: diff에서 해당 기능이 구현/수정된 코드를 찾고, 올바르게 동작하는지 판단한다
+- diff로 확인 가능 → `[x]` 체크 + 확인 근거를 간단히 기술
+- diff만으로 확인 불가 (런타임, UI 확인 필요 등) → `[ ]`로 남기고 사유 기술
 
 리뷰 결과를 `gh pr comment <PR번호> --body "<리뷰 내용>"`으로 PR에 코멘트로 남긴다.
 
@@ -133,8 +135,8 @@ PR 생성 후 `gh pr diff`로 변경 사항을 리뷰한다.
 - [x] 관심사 분리 원칙
 
 **Test plan:**
-- [x] (PR 본문의 Test plan 항목 — diff로 확인 완료)
-- [ ] (PR 본문의 Test plan 항목 — 코드만으로 확인 불가, 수동 확인 필요)
+- [x] 항목 내용 — 확인 근거 (예: `파일명:L42`에서 해당 로직 구현 확인)
+- [ ] 항목 내용 — 사유 (예: 런타임 UI 확인 필요)
 
 **상세:**
 (이슈가 있으면 상세 내용 기술)
@@ -147,9 +149,8 @@ PR 생성 후 `gh pr diff`로 변경 사항을 리뷰한다.
 
 Merge 완료 후:
 1. `git checkout main`으로 main 브랜치로 복귀
-2. `git branch -d <브랜치명>`으로 로컬 브랜치 삭제
-3. `git push origin --delete <브랜치명>`으로 원격 브랜치 삭제
-4. `git pull origin main`으로 최신 상태 동기화
+2. `git branch -d <브랜치명>`으로 로컬 브랜치 삭제 (원격은 GitHub 설정으로 자동 삭제)
+3. `git pull origin main`으로 최신 상태 동기화
 4. 다음 그룹이 있으면 Step 3a로 돌아가서 반복
 
 ---
