@@ -24,6 +24,7 @@ export function useUpdateTeam() {
     mutationFn: ({ id, name }: { id: string; name: string }) => teamApi.update(id, name),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['teams'] });
+      queryClient.invalidateQueries({ queryKey: ['matches'] });
       queryClient.invalidateQueries({ queryKey: ['rankings'] });
     },
   });

@@ -56,6 +56,7 @@ export function useUpdateMatch() {
       matchApi.update(id, updates),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['matches'] });
+      queryClient.invalidateQueries({ queryKey: ['rankings'] });
     },
   });
 }
@@ -66,6 +67,7 @@ export function useDeleteMatch() {
     mutationFn: matchApi.delete,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['matches'] });
+      queryClient.invalidateQueries({ queryKey: ['rankings'] });
     },
   });
 }
